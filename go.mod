@@ -3,6 +3,7 @@ module miniproject
 go 1.23.0
 
 require (
+	github.com/joho/godotenv v1.5.1
 	github.com/labstack/echo/v4 v4.12.0
 	golang.org/x/crypto v0.28.0
 	gorm.io/driver/mysql v1.5.7
