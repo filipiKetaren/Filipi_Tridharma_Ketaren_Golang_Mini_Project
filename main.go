@@ -4,7 +4,9 @@ import (
 	"log"
 	"miniproject/config"
 	authController "miniproject/controller/auth"
+	"miniproject/middleware"
 	authRepo "miniproject/repo/auth"
+	"miniproject/route"
 	authService "miniproject/service/auth"
 
 	"github.com/joho/godotenv"
@@ -15,12 +17,19 @@ func main() {
 	loadEnv()
 	db, _ := config.ConnectDatabase()
 	config.MigrateDB(db)
+
 	e := echo.New()
+
+	authJwt := middleware.JwtAlta{}
 	authRepo := authRepo.NewAuthRepo(db)
-	authService := authService.NewAuthService(authRepo)
+	authService := authService.NewAuthService(authRepo, authJwt)
 	authController := authController.NewAuthController(authService)
 
-	e.POST("/login", authController.LoginController)
+	routeController := route.RouteController{
+		AuthController: *authController,
+	}
+	routeController.InitRoute(e)
+
 	e.Start(":8000")
 }
 

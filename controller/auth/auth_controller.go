@@ -1,6 +1,7 @@
 package auth
 
 import (
+	"fmt"
 	"miniproject/controller/auth/request"
 	"miniproject/controller/auth/response"
 	"miniproject/controller/base"
@@ -27,4 +28,15 @@ func (userController AuthController) LoginController(c echo.Context) error {
 		return base.ErrorResponse(c, err)
 	}
 	return base.SuccessResponse(c, response.FromEntities(user))
+}
+
+func (userController AuthController) RegisterController(c echo.Context) error {
+	userRegister := request.RegisterRequest{}
+	c.Bind(&userRegister)
+	user, err := userController.authService.Register(userRegister.ToEntities())
+	if err != nil {
+		return base.ErrorResponse(c, err)
+	}
+	fmt.Println(user)
+	return base.SuccessResponse(c, response.RegisterFromEntities(user))
 }
