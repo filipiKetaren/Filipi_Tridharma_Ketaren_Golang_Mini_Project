@@ -2,6 +2,8 @@ package route
 
 import (
 	"miniproject/controller/auth"
+	"miniproject/controller/plant"
+	"miniproject/middleware"
 	"os"
 
 	echojwt "github.com/labstack/echo-jwt"
@@ -9,7 +11,9 @@ import (
 )
 
 type RouteController struct {
-	AuthController auth.AuthController
+	AuthController  auth.AuthController
+	PlantController plant.PlantController
+	Jwt             middleware.JwtAlta
 }
 
 func (rc RouteController) InitRoute(e *echo.Echo) {
@@ -19,7 +23,11 @@ func (rc RouteController) InitRoute(e *echo.Echo) {
 	eJwt := e.Group("")
 	eJwt.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET_KEY"))))
 
-	eUser := eJwt.Group("/users")
-	eUser.GET("", rc.AuthController.LoginController)
-
+	ePlant := eJwt.Group("/plants")
+	ePlant.Use(rc.Jwt.GetUserID)
+	ePlant.GET("", rc.PlantController.FindController)
+	ePlant.GET("/:id", rc.PlantController.FindByIdController)
+	ePlant.POST("", rc.PlantController.CreateController)
+	ePlant.PUT("/:id", rc.PlantController.UpdateController)
+	ePlant.DELETE("/:id", rc.PlantController.DeleteController)
 }
