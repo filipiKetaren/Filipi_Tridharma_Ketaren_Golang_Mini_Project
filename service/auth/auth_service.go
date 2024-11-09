@@ -30,8 +30,7 @@ func (authService AuthService) Login(user entities.User) (entities.User, error) 
 
 	oldPassword := user.Password
 
-	var err error
-	user, err = authService.authRepoInterface.Login(user)
+	user, err := authService.authRepoInterface.Login(user)
 	if err != nil {
 		return entities.User{}, err
 	}
@@ -41,7 +40,7 @@ func (authService AuthService) Login(user entities.User) (entities.User, error) 
 		return entities.User{}, constant.PASSWORD_IS_WRONG
 	}
 
-	token, err := authService.jwtInterface.GenerateJWT(user.ID, user.Username)
+	token, err := authService.jwtInterface.GenerateJWT(user.ID)
 	if err != nil {
 		return entities.User{}, err
 	}
