@@ -74,9 +74,6 @@ func (plantController PlantController) UpdateController(c echo.Context) error {
 	}
 
 	userID := c.Get("user_id").(int)
-	if err != nil {
-		return base.ErrorResponse(c, err)
-	}
 
 	plant, err := plantController.plantService.CheckUserLogin(id, userID)
 	if err != nil {
@@ -103,9 +100,6 @@ func (plantController PlantController) DeleteController(c echo.Context) error {
 	}
 
 	userID := c.Get("user_id").(int)
-	if err != nil {
-		return base.ErrorResponse(c, err)
-	}
 
 	plant, err := plantController.plantService.CheckUserLogin(id, userID)
 	if err != nil {
