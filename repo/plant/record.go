@@ -2,31 +2,27 @@ package plant
 
 import (
 	"miniproject/entities"
-	"miniproject/repo/auth"
 )
 
-type Plant struct {
-	ID        int       `gorm: primarykey`
-	UserID    int       `gorm:"not null"`
-	User      auth.User `gorm:"constraint:OnDelete:CASCADE;"`
-	PlantName string    `gorm:"not null"`
-	Species   string    `gorm:"not null"`
-	Location  string    `gorm:"not null"`
-
-	Plants []Plant `gorm:"foreignKey:UserID;constraint:OnDelete:CASCADE;"`
+type plant struct {
+	ID        int    `gorm: "primarykey"`
+	UserID    int    `gorm:"not null"`
+	PlantName string `gorm:"not null"`
+	Species   string `gorm:"not null"`
+	Location  string `gorm:"not null"`
 }
 
-func FromEntities(plant entities.Plant) Plant {
-	return Plant{
-		ID:        plant.ID,
-		UserID:    plant.UserID,
-		PlantName: plant.PlantName,
-		Species:   plant.Species,
-		Location:  plant.Location,
+func FromEntities(plants entities.Plant) plant {
+	return plant{
+		ID:        plants.ID,
+		UserID:    plants.UserID,
+		PlantName: plants.PlantName,
+		Species:   plants.Species,
+		Location:  plants.Location,
 	}
 }
 
-func (plant Plant) ToEntities() entities.Plant {
+func (plant plant) ToEntities() entities.Plant {
 	return entities.Plant{
 		ID:        plant.ID,
 		UserID:    plant.UserID,

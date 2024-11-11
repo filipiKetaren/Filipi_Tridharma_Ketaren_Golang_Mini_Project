@@ -39,19 +39,21 @@ func (plantRepo PlantRepo) CreatePlant(plant entities.Plant) (entities.Plant, er
 }
 
 func (plantRepo PlantRepo) UpdatePlant(plant entities.Plant) (entities.Plant, error) {
-	result := plantRepo.db.Updates(&plant)
+	plantDB := FromEntities(plant)
+	result := plantRepo.db.Updates(&plantDB)
 	if result.Error != nil {
 		return entities.Plant{}, result.Error
 	}
-	return plant, nil
+	return plantDB.ToEntities(), nil
 }
 
 func (plantRepo PlantRepo) DeletePlant(plant entities.Plant) (entities.Plant, error) {
-	result := plantRepo.db.Delete(&plant)
+	plantDB := FromEntities(plant)
+	result := plantRepo.db.Delete(&plantDB)
 	if result.Error != nil {
 		return entities.Plant{}, result.Error
 	}
-	return plant, nil
+	return plantDB.ToEntities(), nil
 }
 
 func (plantRepo PlantRepo) CheckUserLogin(id, userID int) (entities.Plant, error) {
