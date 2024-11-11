@@ -1,21 +1,27 @@
 package response
 
-import "miniproject/entities"
+import (
+	"miniproject/entities"
+)
 
-type Plant struct {
-	ID        int    `json: "id"`
-	UserID    int    `json: "user_id"`
-	PlantName string `json: "plant_name"`
-	Species   string `json: "species"`
-	Location  string `json: "location"`
+type PlantCondition struct {
+	ID               int     `json:"id"`
+	PlantID          int     `json:"plant_id"`
+	Date             string  `json:"date"` // Ubah ke string untuk sementara
+	MoistureLevel    float32 `json:"moisture_level"`
+	SunlightExposure string  `json:"sunlight_exposure"`
+	Temperature      float32 `json:"temperature"`
+	Notes            string  `json:"notes"`
 }
 
-func FromEntities(plant entities.Plant) Plant {
-	return Plant{
-		ID:        plant.ID,
-		UserID:    plant.UserID,
-		PlantName: plant.PlantName,
-		Species:   plant.Species,
-		Location:  plant.Location,
+func FromEntities(plantCondition entities.PlantCondition) PlantCondition {
+	return PlantCondition{
+		ID:               plantCondition.ID,
+		PlantID:          plantCondition.PlantID,
+		Date:             plantCondition.Date,
+		MoistureLevel:    plantCondition.MoistureLevel,
+		SunlightExposure: plantCondition.SunlightExposure,
+		Temperature:      plantCondition.Temperature,
+		Notes:            plantCondition.Notes,
 	}
 }

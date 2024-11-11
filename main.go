@@ -5,12 +5,15 @@ import (
 	"miniproject/config"
 	authController "miniproject/controller/auth"
 	plantController "miniproject/controller/plant"
+	conditionController "miniproject/controller/plant_condition"
 	"miniproject/middleware"
 	authRepo "miniproject/repo/auth"
 	plantRepo "miniproject/repo/plant"
+	conditionRepo "miniproject/repo/plant_condition"
 	"miniproject/route"
 	authService "miniproject/service/auth"
 	plantService "miniproject/service/plant"
+	conditionService "miniproject/service/plant_condition"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
@@ -32,9 +35,14 @@ func main() {
 	plantService := plantService.NewAuthService(plantRepo)
 	plantController := plantController.NewPlantController(plantService)
 
+	conditionRepo := conditionRepo.NewPlantConditionRepo(db)
+	conditionService := conditionService.NewPlantConditionService(conditionRepo)
+	conditionController := conditionController.NewPlantConditionController(conditionService)
+
 	routeController := route.RouteController{
-		AuthController:  *authController,
-		PlantController: *plantController,
+		AuthController:           *authController,
+		PlantController:          *plantController,
+		PlantConditionController: *conditionController,
 	}
 	routeController.InitRoute(e)
 
