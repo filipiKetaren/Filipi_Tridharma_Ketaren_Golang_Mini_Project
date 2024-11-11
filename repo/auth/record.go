@@ -1,24 +1,26 @@
 package auth
 
-import "miniproject/entities"
+import (
+	"miniproject/entities"
+)
 
-type User struct {
+type user struct {
 	ID       int `gorm: primarykey`
 	Username string
 	Email    string
 	Password string
 }
 
-func FromEntities(user entities.User) User {
-	return User{
-		ID:       user.ID,
-		Username: user.Username,
-		Email:    user.Email,
-		Password: user.Password,
+func FromEntities(users entities.User) user {
+	return user{
+		ID:       users.ID,
+		Username: users.Username,
+		Email:    users.Email,
+		Password: users.Password,
 	}
 }
 
-func (user User) ToEntities() entities.User {
+func (user user) ToEntities() entities.User {
 	return entities.User{
 		ID:       user.ID,
 		Username: user.Username,

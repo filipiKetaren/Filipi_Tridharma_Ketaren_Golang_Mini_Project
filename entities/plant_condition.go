@@ -1,11 +1,9 @@
 package entities
 
-import "time"
-
 type PlantCondition struct {
 	ID               int
 	PlantID          int
-	Date             time.Time
+	Date             string
 	MoistureLevel    float32
 	SunlightExposure string
 	Temperature      float32

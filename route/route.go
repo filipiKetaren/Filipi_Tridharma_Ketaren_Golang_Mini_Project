@@ -3,6 +3,7 @@ package route
 import (
 	"miniproject/controller/auth"
 	"miniproject/controller/plant"
+	plantCondition "miniproject/controller/plant_condition"
 	"miniproject/middleware"
 	"os"
 
@@ -11,9 +12,10 @@ import (
 )
 
 type RouteController struct {
-	AuthController  auth.AuthController
-	PlantController plant.PlantController
-	Jwt             middleware.JwtAlta
+	AuthController           auth.AuthController
+	PlantController          plant.PlantController
+	PlantConditionController plantCondition.PlantConditionController
+	Jwt                      middleware.JwtAlta
 }
 
 func (rc RouteController) InitRoute(e *echo.Echo) {
@@ -30,4 +32,12 @@ func (rc RouteController) InitRoute(e *echo.Echo) {
 	ePlant.POST("", rc.PlantController.CreateController)
 	ePlant.PUT("/:id", rc.PlantController.UpdateController)
 	ePlant.DELETE("/:id", rc.PlantController.DeleteController)
+
+	eCondition := eJwt.Group("/condition")
+	eCondition.Use(rc.Jwt.GetUserID)
+	eCondition.GET("", rc.PlantConditionController.FindController)
+	eCondition.GET("/:id", rc.PlantConditionController.FindByIdController)
+	eCondition.POST("", rc.PlantConditionController.CreateController)
+	eCondition.PUT("/:id", rc.PlantConditionController.UpdateController)
+	eCondition.DELETE("/:id", rc.PlantConditionController.DeleteController)
 }

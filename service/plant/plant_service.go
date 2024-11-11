@@ -52,7 +52,7 @@ func (plantService PlantService) DeletePlant(plant entities.Plant) (entities.Pla
 }
 
 func (plantService PlantService) CheckUserLogin(id, userID int) (entities.Plant, error) {
-	plant, err := plantService.plantRepoInterface.FindByIdPlant(id, userID)
+	plant, err := plantService.plantRepoInterface.CheckUserLogin(id, userID)
 	if err != nil {
 		return entities.Plant{}, err
 	}
