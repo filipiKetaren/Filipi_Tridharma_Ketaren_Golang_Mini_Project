@@ -70,3 +70,11 @@ func (plantConditionService PlantConditionService) CheckPlantId(plantID, userID 
 	}
 	return nil
 }
+
+func (plantConditionService PlantConditionService) FindByID(plantID int) (entities.PlantCondition, error) {
+	condition, err := plantConditionService.plantConditionRepoInterface.FindByID(plantID)
+	if err != nil {
+		return entities.PlantCondition{}, err
+	}
+	return condition, nil
+}

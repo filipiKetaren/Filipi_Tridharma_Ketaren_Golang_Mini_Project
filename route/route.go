@@ -4,6 +4,7 @@ import (
 	"miniproject/controller/auth"
 	"miniproject/controller/plant"
 	plantCondition "miniproject/controller/plant_condition"
+	"miniproject/controller/suggestion"
 	"miniproject/middleware"
 	"os"
 
@@ -15,6 +16,7 @@ type RouteController struct {
 	AuthController           auth.AuthController
 	PlantController          plant.PlantController
 	PlantConditionController plantCondition.PlantConditionController
+	SuggestionController     suggestion.PlantSuggestionController
 	Jwt                      middleware.JwtAlta
 }
 
@@ -32,6 +34,7 @@ func (rc RouteController) InitRoute(e *echo.Echo) {
 	ePlant.POST("", rc.PlantController.CreateController)
 	ePlant.PUT("/:id", rc.PlantController.UpdateController)
 	ePlant.DELETE("/:id", rc.PlantController.DeleteController)
+	ePlant.GET("/:id/care-suggestion", rc.SuggestionController.GetCareSuggestion)
 
 	eCondition := eJwt.Group("/condition")
 	eCondition.Use(rc.Jwt.GetUserID)
@@ -40,4 +43,8 @@ func (rc RouteController) InitRoute(e *echo.Echo) {
 	eCondition.POST("", rc.PlantConditionController.CreateController)
 	eCondition.PUT("/:id", rc.PlantConditionController.UpdateController)
 	eCondition.DELETE("/:id", rc.PlantConditionController.DeleteController)
+
+	eSuggestion := eJwt.Group("/suggestion")
+	eSuggestion.Use(rc.Jwt.GetUserID)
+	eSuggestion.GET("", rc.SuggestionController.FindController)
 }
