@@ -10,6 +10,7 @@ import (
 	plantCondition "miniproject/service/plant_condition"
 	"miniproject/service/suggestion"
 	"net/http"
+	"os"
 
 	"github.com/google/generative-ai-go/genai"
 	"github.com/labstack/echo/v4"
@@ -47,7 +48,7 @@ func (controller PlantSuggestionController) GetCareSuggestion(c echo.Context) er
 
 	// Siapkan konteks dan client AI
 	ctx := context.Background()
-	apiKey := "AIzaSyDJPbmQpxfSzb_tqAQf5eK0nK3U66ncM7Q" // Ganti dengan API key layanan AI
+	apiKey := os.Getenv("TOKEN_AI") // Ganti dengan API key layanan AI
 	client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
 	if err != nil {
 		log.Fatal("Failed to create AI client:", err)
