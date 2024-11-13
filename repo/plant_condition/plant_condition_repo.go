@@ -80,3 +80,11 @@ func (repo PlantConditionRepo) CheckPlantId(plantID, userID int) error {
 	}
 	return nil
 }
+
+func (repo PlantConditionRepo) FindByID(plantID int) (entities.PlantCondition, error) {
+	var condition entities.PlantCondition
+	if err := repo.db.Where("plant_id = ?", plantID).First(&condition).Error; err != nil {
+		return entities.PlantCondition{}, err
+	}
+	return condition, nil
+}

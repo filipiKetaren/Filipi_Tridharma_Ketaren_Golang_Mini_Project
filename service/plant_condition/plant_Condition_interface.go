@@ -10,4 +10,5 @@ type PlantConditionInterface interface {
 	DeleteCondition(plant entities.PlantCondition) (entities.PlantCondition, error)
 	GetPlantByIDAndUser(plantID, userID int) (entities.Plant, error)
 	CheckPlantId(PlantID, userID int) error
+	FindByID(PlantID int) (entities.PlantCondition, error)
 }
