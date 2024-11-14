@@ -1,0 +1,2420 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>config: Go Coverage Report</title>
+		<style>
+			body {
+				background: black;
+				color: rgb(80, 80, 80);
+			}
+			body, pre, #legend span {
+				font-family: Menlo, monospace;
+				font-weight: bold;
+			}
+			#topbar {
+				background: black;
+				position: fixed;
+				top: 0; left: 0; right: 0;
+				height: 42px;
+				border-bottom: 1px solid rgb(80, 80, 80);
+			}
+			#content {
+				margin-top: 50px;
+			}
+			#nav, #legend {
+				float: left;
+				margin-left: 10px;
+			}
+			#legend {
+				margin-top: 12px;
+			}
+			#nav {
+				margin-top: 10px;
+			}
+			#legend span {
+				margin: 0 5px;
+			}
+			.cov0 { color: rgb(192, 0, 0) }
+.cov1 { color: rgb(128, 128, 128) }
+.cov2 { color: rgb(116, 140, 131) }
+.cov3 { color: rgb(104, 152, 134) }
+.cov4 { color: rgb(92, 164, 137) }
+.cov5 { color: rgb(80, 176, 140) }
+.cov6 { color: rgb(68, 188, 143) }
+.cov7 { color: rgb(56, 200, 146) }
+.cov8 { color: rgb(44, 212, 149) }
+.cov9 { color: rgb(32, 224, 152) }
+.cov10 { color: rgb(20, 236, 155) }
+
+		</style>
+	</head>
+	<body>
+		<div id="topbar">
+			<div id="nav">
+				<select id="files">
+				
+				<option value="file0">miniproject/config/config.go (0.0%)</option>
+				
+				<option value="file1">miniproject/config/migration.go (0.0%)</option>
+				
+				<option value="file2">miniproject/controller/auth/auth_controller.go (0.0%)</option>
+				
+				<option value="file3">miniproject/controller/auth/request/login_request.go (0.0%)</option>
+				
+				<option value="file4">miniproject/controller/auth/request/register_request.go (0.0%)</option>
+				
+				<option value="file5">miniproject/controller/auth/response/login_response.go (0.0%)</option>
+				
+				<option value="file6">miniproject/controller/auth/response/register_response.go (0.0%)</option>
+				
+				<option value="file7">miniproject/controller/base/base_response.go (0.0%)</option>
+				
+				<option value="file8">miniproject/controller/plant/plant_controller.go (0.0%)</option>
+				
+				<option value="file9">miniproject/controller/plant/request/plant_request.go (0.0%)</option>
+				
+				<option value="file10">miniproject/controller/plant/response/plant_response.go (0.0%)</option>
+				
+				<option value="file11">miniproject/controller/plant_condition/plant_condition_controller.go (0.0%)</option>
+				
+				<option value="file12">miniproject/controller/plant_condition/request/plant_request.go (0.0%)</option>
+				
+				<option value="file13">miniproject/controller/plant_condition/response/plant_response.go (0.0%)</option>
+				
+				<option value="file14">miniproject/controller/suggestion/response/suggestion_response.go (0.0%)</option>
+				
+				<option value="file15">miniproject/controller/suggestion/suggestion_controller.go (0.0%)</option>
+				
+				<option value="file16">miniproject/helper/get_id.go (0.0%)</option>
+				
+				<option value="file17">miniproject/helper/response_code_helper.go (0.0%)</option>
+				
+				<option value="file18">miniproject/main.go (0.0%)</option>
+				
+				<option value="file19">miniproject/middleware/jwt.go (0.0%)</option>
+				
+				<option value="file20">miniproject/repo/auth/auth_repo.go (0.0%)</option>
+				
+				<option value="file21">miniproject/repo/auth/record.go (0.0%)</option>
+				
+				<option value="file22">miniproject/repo/plant/plant_repo.go (0.0%)</option>
+				
+				<option value="file23">miniproject/repo/plant/record.go (0.0%)</option>
+				
+				<option value="file24">miniproject/repo/plant_condition/plant_condition_repo.go (0.0%)</option>
+				
+				<option value="file25">miniproject/repo/plant_condition/record.go (0.0%)</option>
+				
+				<option value="file26">miniproject/repo/suggestion/care_suggestion_repo.go (0.0%)</option>
+				
+				<option value="file27">miniproject/repo/suggestion/record.go (0.0%)</option>
+				
+				<option value="file28">miniproject/route/route.go (0.0%)</option>
+				
+				<option value="file29">miniproject/service/auth/auth_service.go (52.3%)</option>
+				
+				<option value="file30">miniproject/service/plant/plant_service.go (0.0%)</option>
+				
+				<option value="file31">miniproject/service/plant_condition/plant_Condition_service.go (0.0%)</option>
+				
+				<option value="file32">miniproject/service/suggestion/care_suggestion_service.go (0.0%)</option>
+				
+				</select>
+			</div>
+			<div id="legend">
+				<span>not tracked</span>
+			
+				<span class="cov0">not covered</span>
+				<span class="cov8">covered</span>
+			
+			</div>
+		</div>
+		<div id="content">
+		
+		<pre class="file" id="file0" style="display: none">package config
+
+import (
+        "fmt"
+        "os"
+
+        "gorm.io/driver/mysql"
+        "gorm.io/gorm"
+)
+
+type configDB struct {
+        Host     string
+        User     string
+        Password string
+        Port     string
+        Name     string
+}
+
+func ConnectDatabase() (*gorm.DB, error) <span class="cov0" title="0">{
+        configDB := configDB{
+                Host:     os.Getenv("DATABASE_HOST"),
+                User:     os.Getenv("DATABASE_USER"),
+                Password: os.Getenv("DATABASE_PASSWORD"),
+                Port:     os.Getenv("DATABASE_PORT"),
+                Name:     os.Getenv("DATABASE_NAME"),
+        }
+
+        dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&amp;parseTime=True&amp;loc=Local",
+                configDB.User,
+                configDB.Password,
+                configDB.Host,
+                configDB.Port,
+                configDB.Name)
+        db, err := gorm.Open(mysql.Open(dsn), &amp;gorm.Config{})
+        if err != nil </span><span class="cov0" title="0">{
+                panic("failed connect to database")</span>
+        }
+        <span class="cov0" title="0">return db, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file1" style="display: none">package config
+
+import (
+        "miniproject/repo/model"
+
+        "gorm.io/gorm"
+)
+
+func MigrateDB(db *gorm.DB) <span class="cov0" title="0">{
+        db.AutoMigrate(&amp;model.User{}, &amp;model.Plant{}, &amp;model.PlantCondition{}, &amp;model.CareSuggestion{})
+}</span>
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package auth
+
+import (
+        "fmt"
+        "miniproject/controller/auth/request"
+        "miniproject/controller/auth/response"
+        "miniproject/controller/base"
+        "miniproject/service/auth"
+
+        "github.com/labstack/echo/v4"
+)
+
+func NewAuthController(as auth.AuthInterface) *AuthController <span class="cov0" title="0">{
+        return &amp;AuthController{
+                authService: as,
+        }
+}</span>
+
+type AuthController struct {
+        authService auth.AuthInterface
+}
+
+func (userController AuthController) LoginController(c echo.Context) error <span class="cov0" title="0">{
+        userLogin := request.LoginRequest{}
+        c.Bind(&amp;userLogin)
+        user, err := userController.authService.Login(userLogin.ToEntities())
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+        <span class="cov0" title="0">return base.SuccessResponse(c, response.FromEntities(user))</span>
+}
+
+func (userController AuthController) RegisterController(c echo.Context) error <span class="cov0" title="0">{
+        userRegister := request.RegisterRequest{}
+        c.Bind(&amp;userRegister)
+        user, err := userController.authService.Register(userRegister.ToEntities())
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+        <span class="cov0" title="0">fmt.Println(user)
+        return base.SuccessResponse(c, response.RegisterFromEntities(user))</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package request
+
+import "miniproject/entities"
+
+type LoginRequest struct {
+        Email    string `json: "email"`
+        Password string `json: "password"`
+}
+
+func (loginReguest LoginRequest) ToEntities() entities.User <span class="cov0" title="0">{
+        return entities.User{
+                Email:    loginReguest.Email,
+                Password: loginReguest.Password,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package request
+
+import "miniproject/entities"
+
+type RegisterRequest struct {
+        ID       int    `json: "id"`
+        Username string `json: "username"`
+        Email    string `json: "email"`
+        Password string `json: "password"`
+}
+
+func (registerRequest RegisterRequest) ToEntities() entities.User <span class="cov0" title="0">{
+        return entities.User{
+                ID:       registerRequest.ID,
+                Username: registerRequest.Username,
+                Email:    registerRequest.Email,
+                Password: registerRequest.Password,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package response
+
+import "miniproject/entities"
+
+type AuthResponse struct {
+        ID       int    `json: "id"`
+        Username string `json: "username"`
+        Email    string `json: "email"`
+        Token    string `json: "token"`
+}
+
+func FromEntities(user entities.User) AuthResponse <span class="cov0" title="0">{
+        return AuthResponse{
+                ID:       user.ID,
+                Username: user.Username,
+                Email:    user.Email,
+                Token:    user.Token,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package response
+
+import "miniproject/entities"
+
+type RegisterResponse struct {
+        ID       int    `json: "id"`
+        Username string `json: "username"`
+        Email    string `json: "email"`
+}
+
+func RegisterFromEntities(user entities.User) RegisterResponse <span class="cov0" title="0">{
+        return RegisterResponse{
+                ID:       user.ID,
+                Username: user.Username,
+                Email:    user.Email,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package base
+
+import (
+        "miniproject/controller/plant_condition/response"
+        "miniproject/helper"
+        "net/http"
+
+        "github.com/labstack/echo/v4"
+)
+
+type BaseResponse struct {
+        Status  bool        `json:"status"`
+        Message string      `json:"message"`
+        Data    interface{} `json:"data"`
+}
+
+type PlantConditionsResponse struct {
+        Status    bool                            `json:"status"`
+        Message   string                          `json:"message"`
+        Condition response.PlantConditionResponse `json:"data_plant_condition"`
+}
+type SliceConditionResponse struct {
+        Status    bool        `json:"status"`
+        Message   string      `json:"message"`
+        Condition interface{} `json:"condition"`
+        Data      interface{} `json:"data"`
+}
+
+func SuccessResponse(c echo.Context, data any) error <span class="cov0" title="0">{
+        return c.JSON(http.StatusOK, BaseResponse{
+                Status:  true,
+                Message: "sukses",
+                Data:    data,
+        })
+}</span>
+
+func ErrorResponse(c echo.Context, err error) error <span class="cov0" title="0">{
+        return c.JSON(helper.GetResponseCodeFromErr(err), BaseResponse{
+                Status:  false,
+                Message: err.Error(),
+        })
+}</span>
+
+func SliceSuccessResponse(c echo.Context, Condition []response.Condition) error <span class="cov0" title="0">{
+        return c.JSON(http.StatusOK, response.PlantConditionsResponse{
+                Status:    true,
+                Message:   "sukses",
+                Condition: Condition,
+        })
+}</span>
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package plant
+
+import (
+        "miniproject/controller/base"
+        "miniproject/controller/plant/request"
+        "miniproject/controller/plant/response"
+        "miniproject/helper"
+        "miniproject/service/auth"
+        "miniproject/service/plant"
+        "net/http"
+
+        "github.com/labstack/echo/v4"
+)
+
+func NewPlantController(pi plant.PlantInterface, us auth.AuthInterface) *PlantController <span class="cov0" title="0">{
+        return &amp;PlantController{
+                plantService: pi,
+                userService:  us,
+        }
+}</span>
+
+type PlantController struct {
+        plantService plant.PlantInterface
+        userService  auth.AuthInterface
+}
+
+func (plantController PlantController) FindController(c echo.Context) error <span class="cov0" title="0">{
+        userID := c.Get("user_id").(int) // Mendapatkan user_id dari context
+
+        // Mengambil data plant dan user berdasarkan userID
+        plantData, err := plantController.plantService.FindPlant(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Mendapatkan data user yang sesuai dengan userID
+        <span class="cov0" title="0">userData, err := plantController.userService.FindUserByIDs(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Menggabungkan data plant dan user
+        <span class="cov0" title="0">responseData := response.SplitSliceResponse(plantData, userData)
+
+        // Mengembalikan response sukses dengan data yang sudah digabungkan
+        return response.SliceSuccessResponse(c, responseData)</span>
+}
+
+func (plantController PlantController) FindByIdController(c echo.Context) error <span class="cov0" title="0">{
+        id, err := helper.GetIDParam(c)
+        userID := c.Get("user_id").(int)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Ambil data plant berdasarkan ID dan userID
+        <span class="cov0" title="0">plant, err := plantController.plantService.FindByIdPlant(id, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Jika plant ditemukan, ambil data user terkait
+        <span class="cov0" title="0">user, err := plantController.userService.FindByUserID(plant.UserID) // Pastikan user di-fetch dengan benar
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        <span class="cov0" title="0">plantResponse := response.FromEntities(plant, user)
+
+        // Kembalikan respons dengan data plant yang sudah dilengkapi dengan user
+        return base.SuccessResponse(c, plantResponse)</span>
+}
+
+func (plantController PlantController) CreateController(c echo.Context) error <span class="cov0" title="0">{
+        plant := request.Plant{}
+        userID := c.Get("user_id").(int)
+
+        if err := c.Bind(&amp;plant); err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusBadRequest, map[string]string{"error": "Invalid request"})
+        }</span>
+
+        // Set user_id pada data plant
+        <span class="cov0" title="0">plant.UserID = userID
+
+        // Panggil service untuk membuat data plant baru
+        plantData, err := plantController.plantService.CreatePlant(plant.ToEntities())
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Ambil data user terkait setelah plant berhasil dibuat
+        <span class="cov0" title="0">user, err := plantController.userService.FindByUserID(plantData.UserID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Gabungkan data plant dengan data user dalam response
+        <span class="cov0" title="0">plantResponse := response.FromEntities(plantData, user)
+
+        // Mengembalikan respons sukses dengan data yang telah dibuat dan dilengkapi dengan user
+        return base.SuccessResponse(c, plantResponse)</span>
+}
+
+func (plantController PlantController) UpdateController(c echo.Context) error <span class="cov0" title="0">{
+        id, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        <span class="cov0" title="0">userID := c.Get("user_id").(int)
+
+        // Cek apakah user yang login dapat mengubah plant dengan ID tersebut
+        plant, err := plantController.plantService.CheckUserLogin(id, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Bind data yang diterima
+        <span class="cov0" title="0">plantData := request.FromEntities(plant)
+        err = c.Bind(&amp;plantData)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusBadRequest, map[string]string{"error": "Failed to parse request"})
+        }</span>
+
+        // Update plant dengan data yang telah di-bind
+        <span class="cov0" title="0">plant, err = plantController.plantService.UpdatePlant(plantData.ToEntities())
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to update plant"})
+        }</span>
+
+        // Ambil data user terkait setelah plant berhasil diperbarui
+        <span class="cov0" title="0">user, err := plantController.userService.FindByUserID(plant.UserID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Gabungkan data plant dengan data user dalam response
+        <span class="cov0" title="0">plantResponse := response.FromEntities(plant, user)
+
+        // Mengembalikan respons sukses dengan data yang telah di-update dan dilengkapi dengan user
+        return base.SuccessResponse(c, plantResponse)</span>
+}
+
+func (plantController PlantController) DeleteController(c echo.Context) error <span class="cov0" title="0">{
+        id, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        <span class="cov0" title="0">userID := c.Get("user_id").(int)
+
+        // Cek apakah user yang login dapat menghapus plant dengan ID tersebut
+        plant, err := plantController.plantService.CheckUserLogin(id, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Bind data plant yang akan dihapus
+        <span class="cov0" title="0">err = c.Bind(&amp;plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusBadRequest, map[string]string{"error": "Failed to parse request"})
+        }</span>
+
+        // Panggil service untuk menghapus plant
+        <span class="cov0" title="0">plant, err = plantController.plantService.DeletePlant(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to delete plant"})
+        }</span>
+
+        // Ambil data user terkait setelah plant berhasil dihapus
+        <span class="cov0" title="0">user, err := plantController.userService.FindByUserID(plant.UserID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Gabungkan data plant yang dihapus dengan data user dalam response
+        <span class="cov0" title="0">plantResponse := response.FromEntities(plant, user)
+
+        // Mengembalikan respons sukses setelah plant dihapus dan dilengkapi dengan user
+        return base.SuccessResponse(c, plantResponse)</span>
+}
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package request
+
+import "miniproject/entities"
+
+type Plant struct {
+        ID        int    `json:"id"`
+        UserID    int    `json:"user_id"`
+        PlantName string `json:"plant_name"`
+        Species   string `json:"species"`
+        Location  string `json:"location"`
+}
+
+func (plant Plant) ToEntities() entities.Plant <span class="cov0" title="0">{
+        return entities.Plant{
+                ID:        plant.ID,
+                UserID:    plant.UserID,
+                PlantName: plant.PlantName,
+                Species:   plant.Species,
+                Location:  plant.Location,
+        }
+}</span>
+
+func FromEntities(plant entities.Plant) Plant <span class="cov0" title="0">{
+        return Plant{
+                ID:        plant.ID,
+                UserID:    plant.UserID,
+                PlantName: plant.PlantName,
+                Species:   plant.Species,
+                Location:  plant.Location,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package response
+
+import (
+        "miniproject/entities"
+        "net/http"
+
+        "github.com/labstack/echo/v4"
+)
+
+type Plant struct {
+        ID        int
+        User      User
+        PlantName string
+        Species   string
+        Location  string
+}
+
+// Struktur data untuk User
+type User struct {
+        ID       int    `json:"id"`
+        Username string `json:"username"`
+        Email    string `json:"email"`
+}
+
+// Struktur data untuk Plant dengan user terkait
+type PlantWithUser struct {
+        Plant struct {
+                ID        int    `json:"id"`
+                User      User   `json:"user"`
+                PlantName string `json:"plant_name"`
+                Species   string `json:"species"`
+                Location  string `json:"location"`
+        } `json:"plant"`
+}
+
+type PlantResponse struct {
+        Plant Plant `json:"plant"`
+}
+
+type PlantResponses struct {
+        Status  bool            `json:"status"`
+        Message string          `json:"message"`
+        Data    []PlantResponse `json:"data_plant"`
+}
+
+// Fungsi untuk mengubah data Plant dari entities ke format response
+func FromEntities(plant entities.Plant, user entities.User) PlantWithUser <span class="cov0" title="0">{
+        return PlantWithUser{
+                Plant: struct {
+                        ID        int    `json:"id"`
+                        User      User   `json:"user"`
+                        PlantName string `json:"plant_name"`
+                        Species   string `json:"species"`
+                        Location  string `json:"location"`
+                }{
+                        ID: plant.ID,
+                        User: User{
+                                ID:       user.ID,
+                                Username: user.Username,
+                                Email:    user.Email,
+                        },
+                        PlantName: plant.PlantName,
+                        Species:   plant.Species,
+                        Location:  plant.Location,
+                },
+        }
+}</span>
+
+func FromEntitiesNoPassword(user entities.User) User <span class="cov0" title="0">{
+        return User{
+                ID:       user.ID,
+                Username: user.Password,
+                Email:    user.Email,
+        }
+}</span>
+
+func SplitSliceResponse(plantData []entities.Plant, userData []entities.User) []PlantResponse <span class="cov0" title="0">{
+        var plantResponses []PlantResponse
+        for _, plant := range plantData </span><span class="cov0" title="0">{
+                // Temukan user yang sesuai dengan userID
+                var user User
+                for _, u := range userData </span><span class="cov0" title="0">{
+                        if u.ID == plant.UserID </span><span class="cov0" title="0">{
+                                user = User{
+                                        ID:       u.ID,
+                                        Username: u.Username,
+                                        Email:    u.Email,
+                                }
+                                break</span>
+                        }
+                }
+
+                <span class="cov0" title="0">plantResponses = append(plantResponses, PlantResponse{
+                        Plant: Plant{
+                                ID:        plant.ID,
+                                PlantName: plant.PlantName,
+                                Species:   plant.Species,
+                                Location:  plant.Location,
+                                User:      user, // Menambahkan user yang sesuai
+                        },
+                })</span>
+        }
+        <span class="cov0" title="0">return plantResponses</span>
+}
+
+func SliceSuccessResponse(c echo.Context, plantResponse []PlantResponse) error <span class="cov0" title="0">{
+        // Membungkus data ke dalam struct PlantResponses
+        plantResponses := PlantResponses{
+                Status:  true,
+                Message: "success",
+                Data:    plantResponse,
+        }
+        return c.JSON(http.StatusOK, plantResponses)
+}</span>
+</pre>
+		
+		<pre class="file" id="file11" style="display: none">package plantCondition
+
+import (
+        "miniproject/controller/base"
+        "miniproject/controller/plant_condition/request"
+        "miniproject/controller/plant_condition/response"
+        "miniproject/helper"
+        pc "miniproject/service/plant_condition"
+        "net/http"
+
+        "github.com/labstack/echo/v4"
+)
+
+func NewPlantConditionController(pi pc.PlantConditionInterface) *PlantConditionController <span class="cov0" title="0">{
+        return &amp;PlantConditionController{
+                plantConditionService: pi,
+        }
+}</span>
+
+type PlantConditionController struct {
+        plantConditionService pc.PlantConditionInterface
+}
+
+func (plantConditionController PlantConditionController) FindController(c echo.Context) error <span class="cov0" title="0">{
+        userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in context"})
+        }</span>
+
+        // Get plant condition data
+        <span class="cov0" title="0">plantData, err := plantConditionController.plantConditionService.FindCondition(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // // Debugging tambahan untuk memastikan data User dimuat
+        // for _, condition := range plantData {
+        //         fmt.Printf("Condition ID: %d, Plant ID: %d, User ID: %d, Username: %s\n",
+        //                 condition.ID, condition.Plant.ID, condition.Plant.User.ID, condition.Plant.User.Username)
+        // }
+
+        // Prepare data for response as per the new structure
+        <span class="cov0" title="0">var result []response.Condition
+        for _, condition := range plantData </span><span class="cov0" title="0">{
+                // Pastikan User dimuat dengan benar
+                result = append(result, response.Condition{
+                        PlantCondition: response.PlantCondition{
+                                ID:      condition.ID,
+                                PlantID: condition.PlantID,
+                                Plant: response.PlantData{
+                                        ID: condition.Plant.ID,
+                                        User: response.User{
+                                                ID:       condition.Plant.User.ID,
+                                                Username: condition.Plant.User.Username,
+                                                Email:    condition.Plant.User.Email,
+                                        },
+                                        PlantName: condition.Plant.PlantName,
+                                        Species:   condition.Plant.Species,
+                                        Location:  condition.Plant.Location,
+                                },
+                                MoistureLevel:    condition.MoistureLevel,
+                                SunlightExposure: condition.SunlightExposure,
+                                Temperature:      condition.Temperature,
+                                Notes:            condition.Notes,
+                        },
+                })
+        }</span>
+
+        <span class="cov0" title="0">return c.JSON(http.StatusOK, map[string]interface{}{
+                "data_plant_condition": result,
+        })</span>
+}
+
+func (plantConditionController PlantConditionController) FindByIdController(c echo.Context) error <span class="cov0" title="0">{
+        // Get user_id from context
+        userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in context"})
+        }</span>
+
+        // Get conditionID from URL parameters
+        <span class="cov0" title="0">conditionID, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Get the plant condition by ID
+
+        <span class="cov0" title="0">plantData, err := plantConditionController.plantConditionService.FindConditionByID(conditionID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Get associated plant entity for this condition
+        <span class="cov0" title="0">plantEntity, err := plantConditionController.plantConditionService.FindPlantByID(plantData.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Call SplitResponse with both the condition data and plant entity
+        <span class="cov0" title="0">responseCondition := response.SplitResponse(plantData, plantEntity)
+
+        return response.SuccessResponseCondition(c, responseCondition)</span>
+}
+
+func (plantConditionController PlantConditionController) CreateController(c echo.Context) error <span class="cov0" title="0">{
+        // Tambahkan pengecekan awal untuk memastikan plantConditionService tidak nil
+        if plantConditionController.plantConditionService == nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Service is not initialized"})
+        }</span>
+
+        <span class="cov0" title="0">condition := request.PlantCondition{}
+        if err := c.Bind(&amp;condition); err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusBadRequest, map[string]string{"error": "Failed to parse request"})
+        }</span>
+
+        <span class="cov0" title="0">userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID tidak ditemukan dalam konteks"})
+        }</span>
+
+        // Cek jika PlantID valid untuk user ini
+        <span class="cov0" title="0">err := plantConditionController.plantConditionService.CheckPlantId(condition.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Create the plant condition
+        <span class="cov0" title="0">plantData, err := plantConditionController.plantConditionService.CreateCondition(condition.ToEntities())
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Fetch the associated plant data
+        <span class="cov0" title="0">plantEntity, err := plantConditionController.plantConditionService.FindPlantByID(plantData.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Format the response using SplitResponse
+        <span class="cov0" title="0">responseCondition := response.SplitResponse(plantData, plantEntity)
+
+        // Return the response
+        return response.SuccessResponseCondition(c, responseCondition)</span>
+}
+
+func (plantConditionController PlantConditionController) UpdateController(c echo.Context) error <span class="cov0" title="0">{
+        userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in context"})
+        }</span>
+
+        <span class="cov0" title="0">conditionID, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        <span class="cov0" title="0">conditionRequest := request.PlantCondition{}
+        err = c.Bind(&amp;conditionRequest)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusBadRequest, map[string]string{"error": "Failed to parse request"})
+        }</span>
+
+        // Validate PlantID for the current user
+        <span class="cov0" title="0">err = plantConditionController.plantConditionService.CheckPlantId(conditionRequest.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Prepare the condition entity for update
+        <span class="cov0" title="0">condition := conditionRequest.ToEntities()
+        condition.ID = conditionID
+
+        // Update the condition
+        updatedCondition, err := plantConditionController.plantConditionService.UpdateCondition(condition)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to update plant condition"})
+        }</span>
+
+        // Fetch the associated plant data
+        <span class="cov0" title="0">plantEntity, err := plantConditionController.plantConditionService.FindPlantByID(updatedCondition.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Format the response using SplitResponse
+        <span class="cov0" title="0">responseCondition := response.SplitResponse(updatedCondition, plantEntity)
+
+        // Return the response
+        return response.SuccessResponseCondition(c, responseCondition)</span>
+}
+
+func (plantConditionController PlantConditionController) DeleteController(c echo.Context) error <span class="cov0" title="0">{
+        userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in context"})
+        }</span>
+
+        <span class="cov0" title="0">conditionID, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        <span class="cov0" title="0">plantData, err := plantConditionController.plantConditionService.FindConditionByID(conditionID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Delete the condition
+        <span class="cov0" title="0">err = plantConditionController.plantConditionService.DeleteCondition(plantData)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Fetch the associated plant data after deletion
+        <span class="cov0" title="0">plantEntity, err := plantConditionController.plantConditionService.FindPlantByID(plantData.PlantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Format the response using SplitResponse for the deleted condition
+        <span class="cov0" title="0">responseCondition := response.SplitResponse(plantData, plantEntity)
+
+        // Return the response
+        return response.SuccessResponseCondition(c, responseCondition)</span>
+}
+</pre>
+		
+		<pre class="file" id="file12" style="display: none">package request
+
+import (
+        "miniproject/entities"
+)
+
+type PlantCondition struct {
+        ID               int     `json:"id"`
+        PlantID          int     `json:"plant_id"`
+        Date             string  `json:"date"` // Ubah ke string untuk sementara
+        MoistureLevel    float32 `json:"moisture_level"`
+        SunlightExposure string  `json:"sunlight_exposure"`
+        Temperature      float32 `json:"temperature"`
+        Notes            string  `json:"notes"`
+}
+
+func (plantCondition PlantCondition) ToEntities() entities.PlantCondition <span class="cov0" title="0">{
+        return entities.PlantCondition{
+                ID:               plantCondition.ID,
+                PlantID:          plantCondition.PlantID,
+                Date:             plantCondition.Date,
+                MoistureLevel:    plantCondition.MoistureLevel,
+                SunlightExposure: plantCondition.SunlightExposure,
+                Temperature:      plantCondition.Temperature,
+                Notes:            plantCondition.Notes,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file13" style="display: none">package response
+
+import (
+        "miniproject/entities"
+        "net/http"
+
+        "github.com/labstack/echo/v4"
+)
+
+type PlantCondition struct {
+        ID               int       `json:"id"`
+        PlantID          int       `json:"plant_id"`
+        Plant            PlantData `json:"plant"`
+        MoistureLevel    float32   `json:"moisture_level"`
+        SunlightExposure string    `json:"sunlight_exposure"`
+        Temperature      float32   `json:"temperature"`
+        Notes            string    `json:"notes"`
+}
+
+type PlantConditionsResponse struct {
+        Status    bool        `json:"status"`
+        Message   string      `json:"message"`
+        Condition []Condition `json:"data_plant_condition"`
+}
+
+type Condition struct {
+        PlantCondition PlantCondition `json:"plant_condition"`
+}
+
+type PlantData struct {
+        ID        int    `json:"id"`
+        User      User   `json:"user"`
+        PlantName string `json:"plant_name"`
+        Species   string `json:"species"`
+        Location  string `json:"location"`
+}
+
+type User struct {
+        ID       int    `json:"id"`
+        Username string `json:"username"`
+        Email    string `json:"email"`
+}
+
+type PlantConditionSingularResponse struct {
+        Status    bool                   `json:"status"`
+        Message   string                 `json:"message"`
+        Condition PlantConditionResponse `json:"data_plant_condition"`
+}
+
+type PlantConditionResponse struct {
+        PlantCondition PlantCondition `json:"plant_condition"`
+}
+
+func FromEntities(plantCondition entities.PlantCondition) PlantCondition <span class="cov0" title="0">{
+        return PlantCondition{
+                ID:               plantCondition.ID,
+                PlantID:          plantCondition.PlantID,
+                MoistureLevel:    plantCondition.MoistureLevel,
+                SunlightExposure: plantCondition.SunlightExposure,
+                Temperature:      plantCondition.Temperature,
+                Notes:            plantCondition.Notes,
+        }
+}</span>
+
+func SplitSliceResponse(plantData []entities.PlantCondition, plantEntities map[int]entities.Plant) []Condition <span class="cov0" title="0">{
+        conditions := make([]Condition, 0)
+        for _, condition := range plantData </span><span class="cov0" title="0">{
+                plant := plantEntities[condition.PlantID]
+                conditionData := Condition{
+                        PlantCondition: PlantCondition{
+                                ID:      condition.ID,
+                                PlantID: condition.PlantID,
+                                Plant: PlantData{
+                                        ID: plant.ID,
+                                        User: User{
+                                                ID:       plant.UserID,
+                                                Username: plant.User.Username, // Replace with actual username
+                                                Email:    plant.User.Email,    // Replace with actual email
+                                        },
+                                        PlantName: plant.PlantName,
+                                        Species:   plant.Species,
+                                        Location:  plant.Location,
+                                },
+                                MoistureLevel:    condition.MoistureLevel,
+                                SunlightExposure: condition.SunlightExposure,
+                                Temperature:      condition.Temperature,
+                                Notes:            condition.Notes,
+                        },
+                }
+                conditions = append(conditions, conditionData)
+        }</span>
+        <span class="cov0" title="0">return conditions</span>
+}
+
+func SplitResponse(plantData entities.PlantCondition, plantEntity entities.Plant) PlantConditionResponse <span class="cov0" title="0">{
+        plantConditionResponse := PlantConditionResponse{
+                PlantCondition: PlantCondition{
+                        ID:      plantData.ID,
+                        PlantID: plantData.PlantID,
+                        Plant: PlantData{
+                                ID: plantEntity.ID,
+                                User: User{
+                                        ID:       plantEntity.UserID,
+                                        Username: plantEntity.User.Username, // Menggunakan username dari entitas Plant
+                                        Email:    plantEntity.User.Email,    // Replace with actual email
+                                },
+                                PlantName: plantEntity.PlantName,
+                                Species:   plantEntity.Species,
+                                Location:  plantEntity.Location,
+                        },
+                        MoistureLevel:    plantData.MoistureLevel,
+                        SunlightExposure: plantData.SunlightExposure,
+                        Temperature:      plantData.Temperature,
+                        Notes:            plantData.Notes,
+                },
+        }
+        return plantConditionResponse
+}</span>
+
+func SuccessResponseCondition(c echo.Context, plantData PlantConditionResponse) error <span class="cov0" title="0">{
+        return c.JSON(http.StatusOK, PlantConditionSingularResponse{
+                Status:    true,
+                Message:   "sukses",
+                Condition: plantData,
+        })
+}</span>
+</pre>
+		
+		<pre class="file" id="file14" style="display: none">package response
+
+import (
+        "miniproject/entities"
+)
+
+// Model utama untuk CareSuggestion response
+type CareSuggestionResponse struct {
+        ID         int       `json:"id"`
+        PlantID    int       `json:"plant_id"`
+        Plant      PlantData `json:"plant"`
+        Suggestion string    `json:"suggestion"`
+}
+
+type Suggestions struct {
+        SuggestionResponse CareSuggestionResponse `json:"Data"`
+}
+
+// Model untuk data Plant dan User terkait
+type PlantData struct {
+        ID        int    `json:"id"`
+        UserID    int    `json:"user_id"`
+        User      User   `json:"user"`
+        PlantName string `json:"plant_name"`
+        Species   string `json:"species"`
+        Location  string `json:"location"`
+}
+
+// Model untuk User
+type User struct {
+        ID       int    `json:"id"`
+        Username string `json:"username"`
+        Email    string `json:"email"`
+}
+
+func SplitSliceResponse(suggestions []entities.CareSuggestion, plantEntities map[int]entities.Plant) []CareSuggestionResponse <span class="cov0" title="0">{
+        careSuggestionResponses := make([]CareSuggestionResponse, 0)
+
+        // Log untuk memeriksa data suggestions yang diterima
+        // fmt.Println("Suggestions received:", suggestions)
+
+        for _, suggestion := range suggestions </span><span class="cov0" title="0">{
+                // Pastikan plantEntities memiliki entry dengan key PlantID
+                plant := plantEntities[suggestion.PlantID]
+                // Bentuk response untuk setiap CareSuggestion
+                careSuggestionResponse := CareSuggestionResponse{
+                        ID:      suggestion.ID,
+                        PlantID: suggestion.PlantID,
+                        Plant: PlantData{
+                                ID:     plant.ID,
+                                UserID: plant.UserID,
+                                User: User{
+                                        ID:       plant.User.ID,
+                                        Username: plant.User.Username,
+                                        Email:    plant.User.Email,
+                                },
+                                PlantName: plant.PlantName,
+                                Species:   plant.Species,
+                                Location:  plant.Location,
+                        },
+                        Suggestion: suggestion.Suggestion,
+                }
+                careSuggestionResponses = append(careSuggestionResponses, careSuggestionResponse)
+        }</span>
+
+        // // Log untuk memeriksa data response yang terbentuk
+        // fmt.Println("CareSuggestion Responses:", careSuggestionResponses)
+
+        <span class="cov0" title="0">return careSuggestionResponses</span>
+}
+</pre>
+		
+		<pre class="file" id="file15" style="display: none">package suggestion
+
+import (
+        "context"
+        "encoding/json"
+        "fmt"
+        "log"
+        "miniproject/controller/base"
+        "miniproject/controller/suggestion/response"
+        "miniproject/entities"
+        "miniproject/helper"
+        plantCondition "miniproject/service/plant_condition"
+        "miniproject/service/suggestion"
+        "net/http"
+        "os"
+
+        "github.com/google/generative-ai-go/genai"
+        "github.com/labstack/echo/v4"
+        "google.golang.org/api/option"
+)
+
+func NewSuggestionAIController(crs suggestion.SuggestionServiceInterface, pc plantCondition.PlantConditionInterface) *PlantSuggestionController <span class="cov0" title="0">{
+        return &amp;PlantSuggestionController{
+                careSuggestionService: crs,
+                plantConditionService: pc,
+        }
+}</span>
+
+type PlantSuggestionController struct {
+        plantConditionService plantCondition.PlantConditionInterface
+        careSuggestionService suggestion.SuggestionServiceInterface
+}
+
+func (controller PlantSuggestionController) GetCareSuggestion(c echo.Context) error <span class="cov0" title="0">{
+        // Ambil `plant_id` dari parameter URL
+        plantID, err := helper.GetIDParam(c)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusNotFound, map[string]string{"error": "id plant condition not found"})
+        }</span>
+
+        // Temukan kondisi tanaman berdasarkan `plant_id`
+        <span class="cov0" title="0">plantCondition, err := controller.plantConditionService.FindByID(plantID)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusNotFound, map[string]string{"error": "Plant condition not found"})
+        }</span>
+
+        // Periksa apakah plant ID ada
+        <span class="cov0" title="0">exists, err := controller.careSuggestionService.CheckPlantExists(plantID)
+        if err != nil || !exists </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusNotFound, map[string]string{"error": "Plant ID not found in plants table"})
+        }</span>
+
+        // Siapkan konteks dan client AI
+        <span class="cov0" title="0">ctx := context.Background()
+        apiKey := os.Getenv("TOKEN_AI")
+        client, err := genai.NewClient(ctx, option.WithAPIKey(apiKey))
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatal("Failed to create AI client:", err)
+        }</span>
+        <span class="cov0" title="0">defer client.Close()
+
+        // Tentukan model AI yang digunakan
+        model := client.GenerativeModel("gemini-pro")
+        model.SetTemperature(0.7)
+
+        // Siapkan kondisi tanaman untuk dikirim ke model AI
+        genAIParts := []genai.Part{
+                genai.Text("Kelembapan: " + fmt.Sprintf("%.1f", plantCondition.MoistureLevel)),
+                genai.Text("Paparan Sinar Matahari: " + plantCondition.SunlightExposure),
+                genai.Text("Suhu: " + fmt.Sprintf("%.1f", plantCondition.Temperature)),
+                genai.Text("Catatan: " + plantCondition.Notes),
+        }
+
+        // Tambahkan pertanyaan tentang rekomendasi perawatan
+        question := genai.Text("Apa rekomendasi perawatan untuk kondisi tanaman di atas?")
+
+        // Kirim permintaan ke model AI
+        resp, err := model.GenerateContent(ctx, append(genAIParts, question)...)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to get care suggestion"})
+        }</span>
+
+        // Ambil rekomendasi perawatan dari respons AI
+        <span class="cov0" title="0">careSuggestion := resp.Candidates[0].Content.Parts[0]
+
+        // Jika careSuggestion adalah tipe data selain string (misalnya map atau struct), sesuaikan
+        // Misalnya, jika careSuggestion adalah objek JSON atau map, Anda bisa menyimpan sebagai JSON string
+        // Menggunakan json.Marshal untuk mengkonversi tipe data ke string
+        careSuggestionJSON, err := json.Marshal(careSuggestion)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to marshal care suggestion"})
+        }</span>
+
+        // Simpan saran perawatan ke dalam database
+        <span class="cov0" title="0">err = controller.careSuggestionService.SaveCareSuggestion(plantID, string(careSuggestionJSON))
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to save care suggestion"})
+        }</span>
+
+        // Ambil data tanaman dan user terkait
+        <span class="cov0" title="0">plant, err := controller.careSuggestionService.GetPlantByID(plantID)
+        if err != nil </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Failed to get plant data"})
+        }</span>
+
+        // Menyusun respons dengan data tanaman, user, dan saran perawatan
+        <span class="cov0" title="0">response := response.CareSuggestionResponse{
+                ID:      plantID,
+                PlantID: plantID,
+                Plant: response.PlantData{
+                        ID:     plant.ID,
+                        UserID: plant.UserID,
+                        User: response.User{
+                                ID:       plant.User.ID,
+                                Username: plant.User.Username,
+                                Email:    plant.User.Email,
+                        },
+                        PlantName: plant.PlantName,
+                        Species:   plant.Species,
+                        Location:  plant.Location,
+                },
+                Suggestion: string(careSuggestionJSON),
+        }
+
+        // Kirimkan hasil rekomendasi ke client
+        return c.JSON(http.StatusOK, map[string]interface{}{"data": response})</span>
+}
+
+func (plantSuggestionController PlantSuggestionController) FindController(c echo.Context) error <span class="cov0" title="0">{
+        userID, ok := c.Get("user_id").(int)
+        if !ok </span><span class="cov0" title="0">{
+                return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in context"})
+        }</span>
+
+        // Ambil data saran perawatan berdasarkan user ID
+        <span class="cov0" title="0">suggestionData, err := plantSuggestionController.careSuggestionService.FindSuggestion(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return base.ErrorResponse(c, err)
+        }</span>
+
+        // Log untuk memeriksa data suggestionData
+        // fmt.Println("Suggestion Data:", suggestionData)
+
+        // Ambil data plants dan preload data User
+        <span class="cov0" title="0">var plants []entities.Plant
+        err = plantSuggestionController.careSuggestionService.GetPlants(&amp;plants)
+        if err != nil </span><span class="cov0" title="0">{
+                fmt.Println("Error fetching plants:", err)
+                return c.JSON(http.StatusInternalServerError, map[string]string{"error": "Error fetching plant data"})
+        }</span>
+
+        // Inisialisasi map plantEntities
+        <span class="cov0" title="0">plantEntities := make(map[int]entities.Plant)
+        for _, plant := range plants </span><span class="cov0" title="0">{
+                plantEntities[plant.ID] = plant
+        }</span>
+
+        // Panggil SplitSliceResponse untuk membentuk response yang sesuai
+        <span class="cov0" title="0">responseData := response.SplitSliceResponse(suggestionData, plantEntities)
+
+        // Log untuk memeriksa data responseData
+        // fmt.Println("Response Data:", responseData)
+
+        return c.JSON(http.StatusOK, map[string]interface{}{"data": responseData})</span>
+}
+</pre>
+		
+		<pre class="file" id="file16" style="display: none">package helper
+
+import (
+        "strconv"
+
+        "github.com/labstack/echo/v4"
+)
+
+func GetIDParam(ctx echo.Context) (int, error) <span class="cov0" title="0">{
+        id, err := strconv.Atoi(ctx.Param("id"))
+        if err != nil </span><span class="cov0" title="0">{
+                return 0, err
+        }</span>
+        <span class="cov0" title="0">return id, nil</span>
+}
+
+func GetPlantIDParam(ctx echo.Context) (int, error) <span class="cov0" title="0">{
+        id, err := strconv.Atoi(ctx.Param("plant_id"))
+        if err != nil </span><span class="cov0" title="0">{
+                return 0, err
+        }</span>
+        <span class="cov0" title="0">return id, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file17" style="display: none">package helper
+
+import (
+        "miniproject/constant"
+        "net/http"
+)
+
+func GetResponseCodeFromErr(err error) int <span class="cov0" title="0">{
+        switch err </span>{
+        case constant.EMAIL_NOT_FOUND:<span class="cov0" title="0">
+                return http.StatusBadRequest</span>
+        case constant.EMAIL_IS_EMPTY:<span class="cov0" title="0">
+                return http.StatusBadRequest</span>
+        case constant.PASSWORD_IS_EMPTY:<span class="cov0" title="0">
+                return http.StatusBadRequest</span>
+        }
+        <span class="cov0" title="0">return http.StatusInternalServerError</span>
+}
+</pre>
+		
+		<pre class="file" id="file18" style="display: none">package main
+
+import (
+        "log"
+        "miniproject/config"
+        authController "miniproject/controller/auth"
+        plantController "miniproject/controller/plant"
+        conditionController "miniproject/controller/plant_condition"
+        "miniproject/controller/suggestion"
+        "miniproject/middleware"
+        authRepo "miniproject/repo/auth"
+        plantRepo "miniproject/repo/plant"
+        conditionRepo "miniproject/repo/plant_condition"
+        suggestionRepo "miniproject/repo/suggestion"
+        "miniproject/route"
+        authService "miniproject/service/auth"
+        plantService "miniproject/service/plant"
+        conditionService "miniproject/service/plant_condition"
+        suggestionService "miniproject/service/suggestion"
+
+        "github.com/joho/godotenv"
+        "github.com/labstack/echo/v4"
+)
+
+func main() <span class="cov0" title="0">{
+        loadEnv()
+        db, _ := config.ConnectDatabase()
+        config.MigrateDB(db)
+
+        e := echo.New()
+
+        authJwt := middleware.JwtAlta{}
+        authRepo := authRepo.NewAuthRepo(db)
+        authService := authService.NewAuthService(authRepo, authJwt)
+        authController := authController.NewAuthController(authService)
+
+        plantRepo := plantRepo.NewPlantRepo(db)
+        plantService := plantService.NewAuthService(plantRepo)
+        plantController := plantController.NewPlantController(plantService, authService)
+
+        conditionRepo := conditionRepo.NewPlantConditionRepo(db)
+        conditionService := conditionService.NewPlantConditionService(conditionRepo)
+        conditionController := conditionController.NewPlantConditionController(conditionService)
+
+        suggestionAIRepo := suggestionRepo.NewCareSuggestionRepository(db)
+        suggestionAIService := suggestionService.NewSuggestionService(suggestionAIRepo)
+        suggestionAIController := suggestion.NewSuggestionAIController(suggestionAIService, conditionService)
+
+        routeController := route.RouteController{
+                AuthController:           *authController,
+                PlantController:          *plantController,
+                PlantConditionController: *conditionController,
+                SuggestionController:     *suggestionAIController,
+        }
+        routeController.InitRoute(e)
+
+        e.Start(":8000")
+}</span>
+
+func loadEnv() <span class="cov0" title="0">{
+        err := godotenv.Load()
+        if err != nil </span><span class="cov0" title="0">{
+                log.Fatal("Error loading .env file")
+                panic("failed load env")</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file19" style="display: none">package middleware
+
+import (
+        "net/http"
+        "os"
+        "time"
+
+        "github.com/golang-jwt/jwt/v4"
+        "github.com/labstack/echo/v4"
+)
+
+type JwtAlta struct{}
+
+type JwtCustomClaims struct {
+        UserID int `json:"user_id"`
+        jwt.RegisteredClaims
+}
+
+func (jwtAlta JwtAlta) GenerateJWT(userID int) (string, error) <span class="cov0" title="0">{
+        claims := &amp;JwtCustomClaims{
+                UserID: userID,
+                RegisteredClaims: jwt.RegisteredClaims{
+                        ExpiresAt: jwt.NewNumericDate(time.Now().Add(time.Hour * 72)),
+                },
+        }
+
+        token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+        t, err := token.SignedString([]byte(os.Getenv("JWT_SECRET_KEY")))
+        if err != nil </span><span class="cov0" title="0">{
+                return "", err
+        }</span>
+        <span class="cov0" title="0">return t, nil</span>
+}
+
+func (jwtAlta JwtAlta) GetUserID(next echo.HandlerFunc) echo.HandlerFunc <span class="cov0" title="0">{
+        return func(c echo.Context) error </span><span class="cov0" title="0">{
+                userToken, ok := c.Get("user").(*jwt.Token)
+                if !ok </span><span class="cov0" title="0">{
+                        return c.JSON(http.StatusUnauthorized, map[string]string{"error": "Invalid token"})
+                }</span>
+
+                // Gunakan MapClaims dan pastikan token valid
+                <span class="cov0" title="0">claims, ok := userToken.Claims.(jwt.MapClaims)
+                if !ok || !userToken.Valid </span><span class="cov0" title="0">{
+                        return c.JSON(http.StatusUnauthorized, map[string]string{"error": "Invalid token claims"})
+                }</span>
+
+                // Ambil user_id dari claims dan simpan di context
+                <span class="cov0" title="0">userID, ok := claims["user_id"].(float64)
+                if !ok </span><span class="cov0" title="0">{
+                        return c.JSON(http.StatusUnauthorized, map[string]string{"error": "User ID not found in token"})
+                }</span>
+                <span class="cov0" title="0">c.Set("user_id", int(userID))
+
+                return next(c)</span>
+        }
+}
+</pre>
+		
+		<pre class="file" id="file20" style="display: none">package auth
+
+import (
+        "miniproject/entities"
+
+        "gorm.io/gorm"
+)
+
+func NewAuthRepo(db *gorm.DB) *AuthRepo <span class="cov0" title="0">{
+        return &amp;AuthRepo{
+                db: db,
+        }
+}</span>
+
+type AuthRepo struct {
+        db *gorm.DB
+}
+
+func (authRepo AuthRepo) Login(user entities.User) (entities.User, error) <span class="cov0" title="0">{
+        userDB := FromEntities(user)
+        result := authRepo.db.First(&amp;userDB, "email = ?", userDB.Email)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.User{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return userDB.ToEntities(), nil</span>
+}
+
+func (authRepo AuthRepo) Register(user entities.User) (entities.User, error) <span class="cov0" title="0">{
+        userDB := FromEntities(user)
+        result := authRepo.db.Create(&amp;userDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.User{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return userDB.ToEntities(), nil</span>
+}
+
+func (authRepo *AuthRepo) FindByUserIDs(userID int, users *[]entities.User) error <span class="cov0" title="0">{
+        if err := authRepo.db.Where("id = ?", userID).Find(users).Error; err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (authRepo *AuthRepo) FindByID(userID int) (entities.User, error) <span class="cov0" title="0">{
+        var user entities.User
+        err := authRepo.db.First(&amp;user, userID).Error
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.User{}, err // Return error jika tidak ditemukan atau query gagal
+        }</span>
+        <span class="cov0" title="0">return user, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file21" style="display: none">package auth
+
+import (
+        "miniproject/entities"
+)
+
+type user struct {
+        ID       int `gorm: primarykey`
+        Username string
+        Email    string
+        Password string
+}
+
+func FromEntities(users entities.User) user <span class="cov0" title="0">{
+        return user{
+                ID:       users.ID,
+                Username: users.Username,
+                Email:    users.Email,
+                Password: users.Password,
+        }
+}</span>
+
+func (user user) ToEntities() entities.User <span class="cov0" title="0">{
+        return entities.User{
+                ID:       user.ID,
+                Username: user.Username,
+                Email:    user.Email,
+                Password: user.Password,
+        }
+}</span>
+
+func (user user) ToEntitiesNoPassword() entities.User <span class="cov0" title="0">{
+        return entities.User{
+                ID:       user.ID,
+                Username: user.Username,
+                Email:    user.Email,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file22" style="display: none">package plant
+
+import (
+        "miniproject/entities"
+
+        "gorm.io/gorm"
+)
+
+func NewPlantRepo(db *gorm.DB) *PlantRepo <span class="cov0" title="0">{
+        return &amp;PlantRepo{
+                db: db,
+        }
+}</span>
+
+type PlantRepo struct {
+        db *gorm.DB
+}
+
+func (plantRepo PlantRepo) FindPlant(userID int) ([]entities.Plant, error) <span class="cov0" title="0">{
+        var plants []entities.Plant
+        result := plantRepo.db.Table("plants").
+                Select("plants.id, plants.user_id, plants.plant_name, plants.species, plants.location, users.id as user_id, users.username, users.email, users.password").
+                Joins("JOIN users ON users.id = plants.user_id").
+                Find(&amp;plants)
+
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return nil, result.Error
+        }</span>
+        <span class="cov0" title="0">return plants, nil</span>
+}
+
+func (plantRepo PlantRepo) FindByIdPlant(id int, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        return plantRepo.CheckUserLogin(id, userID)
+}</span>
+
+func (plantRepo PlantRepo) CreatePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plantDB := FromEntities(plant)
+        result := plantRepo.db.Create(&amp;plantDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return plantDB.ToEntities(), nil</span>
+}
+
+func (plantRepo PlantRepo) UpdatePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plantDB := FromEntities(plant)
+        result := plantRepo.db.Updates(&amp;plantDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return plantDB.ToEntities(), nil</span>
+}
+
+func (plantRepo PlantRepo) DeletePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plantDB := FromEntities(plant)
+        result := plantRepo.db.Delete(&amp;plantDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return plantDB.ToEntities(), nil</span>
+}
+
+func (plantRepo PlantRepo) CheckUserLogin(id, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        var plantDB entities.Plant
+        err := plantRepo.db.Where("id = ? AND user_id = ?", id, userID).First(&amp;plantDB)
+        if err.Error != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err.Error
+        }</span>
+        <span class="cov0" title="0">return plantDB, nil</span>
+}
+
+func (r PlantRepo) FindPlantsByUserID(userID int) ([]entities.Plant, error) <span class="cov0" title="0">{
+        var plants []entities.Plant
+        err := r.db.Where("user_id = ?", userID).Find(&amp;plants).Error
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">return plants, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file23" style="display: none">package plant
+
+import (
+        "miniproject/entities"
+)
+
+type plant struct {
+        ID        int    `gorm: "primarykey"`
+        UserID    int    `gorm:"not null"`
+        PlantName string `gorm:"not null"`
+        Species   string `gorm:"not null"`
+        Location  string `gorm:"not null"`
+}
+
+func FromEntities(plants entities.Plant) plant <span class="cov0" title="0">{
+        return plant{
+                ID:        plants.ID,
+                UserID:    plants.UserID,
+                PlantName: plants.PlantName,
+                Species:   plants.Species,
+                Location:  plants.Location,
+        }
+}</span>
+
+func (plant plant) ToEntities() entities.Plant <span class="cov0" title="0">{
+        return entities.Plant{
+                ID:        plant.ID,
+                UserID:    plant.UserID,
+                PlantName: plant.PlantName,
+                Species:   plant.Species,
+                Location:  plant.Location,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file24" style="display: none">package plantCondition
+
+import (
+        "errors"
+        "miniproject/entities"
+
+        "gorm.io/gorm"
+)
+
+func NewPlantConditionRepo(db *gorm.DB) *PlantConditionRepo <span class="cov0" title="0">{
+        return &amp;PlantConditionRepo{
+                db: db,
+        }
+}</span>
+
+type PlantConditionRepo struct {
+        db *gorm.DB
+}
+
+func (plantConditionRepo PlantConditionRepo) FindCondition(userID int) ([]entities.PlantCondition, error) <span class="cov0" title="0">{
+        var conditions []entities.PlantCondition
+        result := plantConditionRepo.db.Joins("JOIN plants ON plants.id = plant_conditions.plant_id").
+                Where("plants.user_id = ?", userID).Find(&amp;conditions)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return []entities.PlantCondition{}, result.Error
+        }</span>
+
+        // Mengambil data terkait Plant dan User
+        <span class="cov0" title="0">for i, condition := range conditions </span><span class="cov0" title="0">{
+                var plant entities.Plant
+                if err := plantConditionRepo.db.Preload("User").Where("id = ?", condition.PlantID).First(&amp;plant).Error; err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+                <span class="cov0" title="0">conditions[i].Plant = plant</span>
+        }
+
+        <span class="cov0" title="0">return conditions, nil</span>
+}
+
+func (plantConditionRepo PlantConditionRepo) FindConditionByID(conditionID, userID int) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        var condition entities.PlantCondition
+        result := plantConditionRepo.db.
+                Joins("JOIN plants ON plants.id = plant_conditions.plant_id").
+                Joins("JOIN users ON users.id = plants.user_id").
+                Where("plant_conditions.id = ? AND plants.user_id = ?", conditionID, userID).
+                Preload("Plant.User"). // Preload relasi Plant dan User
+                First(&amp;condition)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return condition, nil</span>
+}
+
+func (plantConditionRepo PlantConditionRepo) CreateCondition(condition entities.PlantCondition) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        plantDB := FromEntities(condition)
+        result := plantConditionRepo.db.Create(&amp;plantDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, result.Error
+        }</span>
+
+        <span class="cov0" title="0">return plantDB.ToEntities(), nil</span>
+}
+
+func (plantConditionRepo PlantConditionRepo) UpdateCondition(condition entities.PlantCondition) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        plantDB := FromEntities(condition)
+        result := plantConditionRepo.db.Model(&amp;plantDB).Where("id = ?", condition.ID).Updates(condition)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, result.Error
+        }</span>
+        <span class="cov0" title="0">return plantDB.ToEntities(), nil</span>
+}
+
+func (plantConditionRepo PlantConditionRepo) DeleteCondition(plant entities.PlantCondition) error <span class="cov0" title="0">{
+        plantDB := FromEntities(plant)
+        result := plantConditionRepo.db.Delete(&amp;plantDB)
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return result.Error
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (repo PlantConditionRepo) FindPlantByIDAndUser(plantID, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        var plant entities.Plant
+        // Gunakan Preload("User") untuk memuat data User terkait
+        if err := repo.db.Where("id = ? AND user_id = ?", plantID, userID).
+                Preload("User").
+                First(&amp;plant).Error; err != nil </span><span class="cov0" title="0">{
+                if errors.Is(err, gorm.ErrRecordNotFound) </span><span class="cov0" title="0">{
+                        return plant, nil
+                }</span>
+                <span class="cov0" title="0">return plant, err</span>
+        }
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (repo PlantConditionRepo) CheckPlantId(plantID, userID int) error <span class="cov0" title="0">{
+        var plant entities.Plant
+        if err := repo.db.Where("id = ? AND user_id = ?", plantID, userID).First(&amp;plant).Error; err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (repo PlantConditionRepo) FindByID(plantID int) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        var condition entities.PlantCondition
+        if err := repo.db.
+                Preload("Plant.User"). // Preload User for the associated Plant
+                Where("plant_id = ?", plantID).
+                First(&amp;condition).Error; err != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, err
+        }</span>
+        <span class="cov0" title="0">return condition, nil</span>
+}
+
+func (repo PlantConditionRepo) FindPlantByID(plantID, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        var plant entities.Plant
+        // Tambahkan Preload untuk user
+        err := repo.db.Preload("User").Where("id = ? AND user_id = ?", plantID, userID).First(&amp;plant).Error
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file25" style="display: none">package plantCondition
+
+import (
+        "miniproject/entities"
+)
+
+type plantCondition struct {
+        ID               int    `gorm:"primaryKey"`
+        PlantID          int    `gorm:"not null"` // Foreign key to Plant
+        Date             string `gorm:"not null"`
+        MoistureLevel    float32
+        SunlightExposure string
+        Temperature      float32
+        Notes            string
+}
+
+func FromEntities(plantConditions entities.PlantCondition) plantCondition <span class="cov0" title="0">{
+        return plantCondition{
+                ID:               plantConditions.ID,
+                PlantID:          plantConditions.PlantID,
+                Date:             plantConditions.Date,
+                MoistureLevel:    plantConditions.MoistureLevel,
+                SunlightExposure: plantConditions.SunlightExposure,
+                Temperature:      plantConditions.Temperature,
+                Notes:            plantConditions.Notes,
+        }
+}</span>
+
+func (plantCondition plantCondition) ToEntities() entities.PlantCondition <span class="cov0" title="0">{
+        return entities.PlantCondition{
+                ID:               plantCondition.ID,
+                PlantID:          plantCondition.PlantID,
+                Date:             plantCondition.Date,
+                MoistureLevel:    plantCondition.MoistureLevel,
+                SunlightExposure: plantCondition.SunlightExposure,
+                Temperature:      plantCondition.Temperature,
+                Notes:            plantCondition.Notes,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file26" style="display: none">package suggestion
+
+import (
+        "fmt"
+        "miniproject/entities"
+
+        "gorm.io/gorm"
+)
+
+func NewCareSuggestionRepository(db *gorm.DB) *careSuggestionRepository <span class="cov0" title="0">{
+        return &amp;careSuggestionRepository{
+                db: db}
+}</span>
+
+type careSuggestionRepository struct {
+        db *gorm.DB
+}
+
+func (repo careSuggestionRepository) SaveSuggestion(suggestion entities.CareSuggestion) error <span class="cov0" title="0">{
+        if err := repo.db.Create(&amp;suggestion).Error; err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("failed to save care suggestion: %w", err)
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (repo careSuggestionRepository) CheckPlantExists(plantID int) (bool, error) <span class="cov0" title="0">{
+        var plant entities.Plant
+        err := repo.db.First(&amp;plant, plantID).Error
+        if err != nil </span><span class="cov0" title="0">{
+                return false, err // Terjadi error lainnya
+        }</span>
+        <span class="cov0" title="0">return true, nil</span> // Tanaman ditemukan
+}
+
+func (repo careSuggestionRepository) FindSuggestion(userID int) ([]entities.CareSuggestion, error) <span class="cov0" title="0">{
+        var suggestions []entities.CareSuggestion
+        result := repo.db.
+                Joins("JOIN plants ON plants.id = care_suggestions.plant_id").
+                Where("plants.user_id = ?", userID).
+                Preload("Plant.User").
+                Preload("Plant").
+                Find(&amp;suggestions)
+
+        // Log untuk memeriksa hasil query
+        if result.Error != nil </span><span class="cov0" title="0">{
+                return nil, result.Error
+        }</span>
+        // fmt.Println("Suggestions Data:", suggestions) // Menampilkan data suggestions yang dimuat
+        <span class="cov0" title="0">return suggestions, nil</span>
+}
+
+func (repo careSuggestionRepository) GetAll(plants *[]entities.Plant) error <span class="cov0" title="0">{
+        // Mengambil data dari database menggunakan GORM
+        err := repo.db.Preload("User").Find(plants).Error
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (s careSuggestionRepository) GetPlantByID(plantID int) (entities.Plant, error) <span class="cov0" title="0">{
+        // Membuat objek untuk menyimpan data tanaman yang diambil
+        var plant entities.Plant
+
+        // Query untuk mengambil data tanaman berdasarkan plantID
+        err := s.db.Preload("User").First(&amp;plant, plantID).Error
+        if err != nil </span><span class="cov0" title="0">{
+                // Jika terjadi error (misalnya data tidak ditemukan)
+                return plant, fmt.Errorf("failed to find plant with id %d: %w", plantID, err)
+        }</span>
+
+        // Mengembalikan objek tanaman yang ditemukan
+        <span class="cov0" title="0">return plant, nil</span>
+}
+</pre>
+		
+		<pre class="file" id="file27" style="display: none">package suggestion
+
+import (
+        "miniproject/entities"
+)
+
+type CareSuggestion struct {
+        ID         int    `gorm:"primaryKey"`
+        PlantID    int    `gorm:"not null"`
+        Suggestion string `gorm:"type:text;not null"` // Menyimpan saran sebagai string
+}
+
+func FromEntities(careSuggestion entities.CareSuggestion) CareSuggestion <span class="cov0" title="0">{
+        return CareSuggestion{
+                ID:         careSuggestion.ID,
+                PlantID:    careSuggestion.PlantID,
+                Suggestion: careSuggestion.Suggestion,
+        }
+}</span>
+
+func (careSuggestion CareSuggestion) ToEntities() entities.CareSuggestion <span class="cov0" title="0">{
+        return entities.CareSuggestion{
+                ID:         careSuggestion.ID,
+                PlantID:    careSuggestion.PlantID,
+                Suggestion: careSuggestion.Suggestion,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file28" style="display: none">package route
+
+import (
+        "miniproject/controller/auth"
+        "miniproject/controller/plant"
+        plantCondition "miniproject/controller/plant_condition"
+        "miniproject/controller/suggestion"
+        "miniproject/middleware"
+        "os"
+
+        echojwt "github.com/labstack/echo-jwt"
+        "github.com/labstack/echo/v4"
+)
+
+type RouteController struct {
+        AuthController           auth.AuthController
+        PlantController          plant.PlantController
+        PlantConditionController plantCondition.PlantConditionController
+        SuggestionController     suggestion.PlantSuggestionController
+        Jwt                      middleware.JwtAlta
+}
+
+func (rc RouteController) InitRoute(e *echo.Echo) <span class="cov0" title="0">{
+        e.POST("/login", rc.AuthController.LoginController)
+        e.POST("/register", rc.AuthController.RegisterController)
+
+        eJwt := e.Group("")
+        eJwt.Use(echojwt.JWT([]byte(os.Getenv("JWT_SECRET_KEY"))))
+
+        ePlant := eJwt.Group("/plants")
+        ePlant.Use(rc.Jwt.GetUserID)
+        ePlant.GET("", rc.PlantController.FindController)
+        ePlant.GET("/:id", rc.PlantController.FindByIdController)
+        ePlant.POST("", rc.PlantController.CreateController)
+        ePlant.PUT("/:id", rc.PlantController.UpdateController)
+        ePlant.DELETE("/:id", rc.PlantController.DeleteController)
+        ePlant.GET("/:id/care-suggestion", rc.SuggestionController.GetCareSuggestion)
+
+        eCondition := eJwt.Group("/condition")
+        eCondition.Use(rc.Jwt.GetUserID)
+        eCondition.GET("", rc.PlantConditionController.FindController)
+        eCondition.GET("/:id", rc.PlantConditionController.FindByIdController)
+        eCondition.POST("", rc.PlantConditionController.CreateController)
+        eCondition.PUT("/:id", rc.PlantConditionController.UpdateController)
+        eCondition.DELETE("/:id", rc.PlantConditionController.DeleteController)
+
+        eSuggestion := eJwt.Group("/suggestion")
+        eSuggestion.Use(rc.Jwt.GetUserID)
+        eSuggestion.GET("", rc.SuggestionController.FindController)
+}</span>
+</pre>
+		
+		<pre class="file" id="file29" style="display: none">package auth
+
+import (
+        "miniproject/constant"
+        "miniproject/entities"
+        "miniproject/middleware"
+        "miniproject/repo/auth"
+
+        "golang.org/x/crypto/bcrypt"
+)
+
+func NewAuthService(ar auth.AuthRepoInterface, jt middleware.JwtInterface) *AuthService <span class="cov8" title="1">{
+        return &amp;AuthService{
+                authRepoInterface: ar,
+                jwtInterface:      jt,
+        }
+}</span>
+
+type AuthService struct {
+        authRepoInterface auth.AuthRepoInterface
+        jwtInterface      middleware.JwtInterface
+}
+
+func (authService AuthService) Login(user entities.User) (entities.User, error) <span class="cov8" title="1">{
+        if user.Email == "" </span><span class="cov8" title="1">{
+                return entities.User{}, constant.EMAIL_IS_EMPTY
+        }</span> else<span class="cov8" title="1"> if user.Password == "" </span><span class="cov8" title="1">{
+                return entities.User{}, constant.PASSWORD_IS_EMPTY
+        }</span>
+
+        <span class="cov8" title="1">oldPassword := user.Password
+
+        user, err := authService.authRepoInterface.Login(user)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.User{}, err
+        }</span>
+
+        <span class="cov8" title="1">match := CheckPasswordHash(oldPassword, user.Password)
+        if !match </span><span class="cov8" title="1">{
+                return entities.User{}, constant.PASSWORD_IS_WRONG
+        }</span>
+
+        <span class="cov8" title="1">token, err := authService.jwtInterface.GenerateJWT(user.ID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.User{}, err
+        }</span>
+
+        <span class="cov8" title="1">user.Token = token
+        return user, nil</span>
+}
+func (authService AuthService) Register(user entities.User) (entities.User, error) <span class="cov0" title="0">{
+        if user.Email == "" </span><span class="cov0" title="0">{
+                return entities.User{}, constant.EMAIL_IS_EMPTY
+        }</span> else<span class="cov0" title="0"> if user.Password == "" </span><span class="cov0" title="0">{
+                return entities.User{}, constant.PASSWORD_IS_EMPTY
+        }</span>
+
+        <span class="cov0" title="0">hash, _ := HashPassword(user.Password)
+        user.Password = hash
+        user, err := authService.authRepoInterface.Register(user)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.User{}, err
+        }</span>
+        <span class="cov0" title="0">return user, nil</span>
+}
+
+func (authService AuthService) FindUserByIDs(userID int) ([]entities.User, error) <span class="cov0" title="0">{
+        var users []entities.User
+        err := authService.authRepoInterface.FindByUserIDs(userID, &amp;users)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov0" title="0">return users, nil</span>
+}
+
+// FindByUserID mencari user berdasarkan ID
+func (authService AuthService) FindByUserID(userID int) (entities.User, error) <span class="cov0" title="0">{
+        user, err := authService.authRepoInterface.FindByID(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.User{}, err // Return empty user struct jika error
+        }</span>
+        <span class="cov0" title="0">return user, nil</span>
+}
+
+func HashPassword(password string) (string, error) <span class="cov8" title="1">{
+        bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
+        return string(bytes), err
+}</span>
+
+func CheckPasswordHash(password, hash string) bool <span class="cov8" title="1">{
+        err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
+        return err == nil
+}</span>
+
+func Add(a, b int) int <span class="cov8" title="1">{
+        result := a + b
+        if result &lt; 0 </span><span class="cov8" title="1">{
+                return 0
+        }</span>
+        <span class="cov8" title="1">return result</span>
+}
+</pre>
+		
+		<pre class="file" id="file30" style="display: none">package plant
+
+import (
+        "miniproject/entities"
+        "miniproject/repo/plant"
+)
+
+func NewAuthService(pr plant.PlantRepoInterface) *PlantService <span class="cov0" title="0">{
+        return &amp;PlantService{
+                plantRepoInterface: pr,
+                // userRepo:           ur,
+        }
+}</span>
+
+type PlantService struct {
+        plantRepoInterface plant.PlantRepoInterface
+        // userRepo           auth.AuthRepoInterface
+}
+
+func (plantService PlantService) FindPlant(userID int) ([]entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantService.plantRepoInterface.FindPlant(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return []entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantService PlantService) FindByIdPlant(id int, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        return plantService.CheckUserLogin(id, userID)
+}</span>
+
+func (plantService PlantService) CreatePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantService.plantRepoInterface.CreatePlant(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantService PlantService) UpdatePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantService.plantRepoInterface.UpdatePlant(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantService PlantService) DeletePlant(plant entities.Plant) (entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantService.plantRepoInterface.DeletePlant(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantService PlantService) CheckUserLogin(id, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantService.plantRepoInterface.CheckUserLogin(id, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+// func (s *PlantService) FindPlantsByUserID(userID int) ([]entities.User, error) {
+//         var users []entities.User
+//         if err := s.userRepo.FindByUserID(userID, &amp;users); err != nil {
+//                 return nil, err
+//         }
+//         return users, nil
+// }
+</pre>
+		
+		<pre class="file" id="file31" style="display: none">package plantCondition
+
+import (
+        "miniproject/entities"
+        plantCondition "miniproject/repo/plant_condition"
+)
+
+func NewPlantConditionService(pr plantCondition.PlantConditionRepoInterface) *PlantConditionService <span class="cov0" title="0">{
+        return &amp;PlantConditionService{
+                plantConditionRepoInterface: pr,
+        }
+}</span>
+
+type PlantConditionService struct {
+        plantConditionRepoInterface plantCondition.PlantConditionRepoInterface
+}
+
+func (plantConditionService PlantConditionService) FindCondition(userID int) ([]entities.PlantCondition, error) <span class="cov0" title="0">{
+        // Mengambil data kondisi tanaman dan data terkait Plant dan User
+        plantConditions, err := plantConditionService.plantConditionRepoInterface.FindCondition(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+
+        <span class="cov0" title="0">for i, condition := range plantConditions </span><span class="cov0" title="0">{
+                // Ambil data plant terkait dari repository
+                plant, err := plantConditionService.plantConditionRepoInterface.FindPlantByIDAndUser(condition.PlantID, userID)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, err
+                }</span>
+
+                // Mengupdate Plant dengan data User
+                <span class="cov0" title="0">condition.Plant = plant
+                plantConditions[i] = condition</span>
+        }
+
+        <span class="cov0" title="0">return plantConditions, nil</span>
+}
+
+func (plantConditionService PlantConditionService) FindConditionByID(conditionID, userID int) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        condition, err := plantConditionService.plantConditionRepoInterface.FindConditionByID(conditionID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, err
+        }</span>
+        <span class="cov0" title="0">return condition, nil</span>
+}
+
+func (plantConditionService PlantConditionService) CreateCondition(condition entities.PlantCondition) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        plant, err := plantConditionService.plantConditionRepoInterface.CreateCondition(condition)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantConditionService PlantConditionService) UpdateCondition(plant entities.PlantCondition) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        plant, err := plantConditionService.plantConditionRepoInterface.UpdateCondition(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantConditionService PlantConditionService) DeleteCondition(plant entities.PlantCondition) error <span class="cov0" title="0">{
+        err := plantConditionService.plantConditionRepoInterface.DeleteCondition(plant)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (plantConditionService PlantConditionService) GetPlantByIDAndUser(plantID, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        plant, err := plantConditionService.plantConditionRepoInterface.FindPlantByIDAndUser(plantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.Plant{}, err
+        }</span>
+        <span class="cov0" title="0">return plant, nil</span>
+}
+
+func (plantConditionService PlantConditionService) CheckPlantId(plantID, userID int) error <span class="cov0" title="0">{
+        err := plantConditionService.plantConditionRepoInterface.CheckPlantId(plantID, userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (plantConditionService PlantConditionService) FindByID(plantID int) (entities.PlantCondition, error) <span class="cov0" title="0">{
+        condition, err := plantConditionService.plantConditionRepoInterface.FindByID(plantID)
+        if err != nil </span><span class="cov0" title="0">{
+                return entities.PlantCondition{}, err
+        }</span>
+        <span class="cov0" title="0">return condition, nil</span>
+}
+
+func (plantConditionService PlantConditionService) SplitResponse(plantData []entities.PlantCondition) ([]map[string]interface{}, []map[string]interface{}) <span class="cov0" title="0">{
+        var plantInfo []map[string]interface{}
+        var dataInfo []map[string]interface{}
+
+        for _, condition := range plantData </span><span class="cov0" title="0">{
+                // Urutkan objek: plant berada di atas data
+                plantInfo = append(plantInfo, map[string]interface{}{
+                        "id":       condition.ID,
+                        "plant_id": condition.PlantID,
+                })
+
+                dataInfo = append(dataInfo, map[string]interface{}{
+                        "date":              condition.Date,
+                        "moisture_level":    condition.MoistureLevel,
+                        "sunlight_exposure": condition.SunlightExposure,
+                        "temperature":       condition.Temperature,
+                        "notes":             condition.Notes,
+                })
+        }</span>
+
+        // Gabungkan plantInfo dan dataInfo ke dalam format yang sesuai
+        <span class="cov0" title="0">var result []map[string]interface{}
+        for i := range plantInfo </span><span class="cov0" title="0">{
+                result = append(result, map[string]interface{}{
+                        "alant_condition": plantInfo[i], // plant di atas
+                        "data":            dataInfo[i],  // data di bawah
+                })
+        }</span>
+
+        <span class="cov0" title="0">return result, nil</span>
+}
+
+func (service *PlantConditionService) FindPlantByID(plantID, userID int) (entities.Plant, error) <span class="cov0" title="0">{
+        return service.plantConditionRepoInterface.FindPlantByID(plantID, userID)
+}</span>
+</pre>
+		
+		<pre class="file" id="file32" style="display: none">package suggestion
+
+import (
+        "fmt"
+        "miniproject/entities"
+        "miniproject/repo/suggestion"
+)
+
+func NewSuggestionService(crs suggestion.SuggestionRepoInterface) *CareSuggestionService <span class="cov0" title="0">{
+        return &amp;CareSuggestionService{
+                suggestionRepo: crs}
+}</span>
+
+type CareSuggestionService struct {
+        suggestionRepo suggestion.SuggestionRepoInterface
+}
+
+// Fungsi untuk meminta saran perawatan ke API Gen AI
+func (c CareSuggestionService) SaveCareSuggestion(plantID int, suggestion string) error <span class="cov0" title="0">{
+        plantExists, err := c.suggestionRepo.CheckPlantExists(plantID)
+        if err != nil || !plantExists </span><span class="cov0" title="0">{
+                return fmt.Errorf("plant with id %d not found", plantID)
+        }</span>
+
+        // Membuat objek CareSuggestion
+        <span class="cov0" title="0">careSuggestion := entities.CareSuggestion{
+                PlantID:    plantID,
+                Suggestion: suggestion,
+        }
+
+        // Menyimpan objek CareSuggestion ke repository
+        return c.suggestionRepo.SaveSuggestion(careSuggestion)</span>
+}
+
+func (c CareSuggestionService) CheckPlantExists(plantID int) (bool, error) <span class="cov0" title="0">{
+        return c.suggestionRepo.CheckPlantExists(plantID)
+}</span>
+
+func (c CareSuggestionService) FindSuggestion(userID int) ([]entities.CareSuggestion, error) <span class="cov0" title="0">{
+        suggestion, err := c.suggestionRepo.FindSuggestion(userID)
+        if err != nil </span><span class="cov0" title="0">{
+                return []entities.CareSuggestion{}, err
+        }</span>
+        <span class="cov0" title="0">return suggestion, nil</span>
+}
+
+func (c CareSuggestionService) GetPlants(plants *[]entities.Plant) error <span class="cov0" title="0">{
+        // Mengambil data tanaman menggunakan repository
+        err := c.suggestionRepo.GetAll(plants)
+        if err != nil </span><span class="cov0" title="0">{
+                return fmt.Errorf("error fetching plants: %w", err)
+        }</span>
+        <span class="cov0" title="0">return nil</span>
+}
+
+func (c CareSuggestionService) GetPlantByID(plantID int) (entities.Plant, error) <span class="cov0" title="0">{
+        return c.suggestionRepo.GetPlantByID(plantID)
+}</span>
+</pre>
+		
+		</div>
+	</body>
+	<script>
+	(function() {
+		var files = document.getElementById('files');
+		var visible;
+		files.addEventListener('change', onChange, false);
+		function select(part) {
+			if (visible)
+				visible.style.display = 'none';
+			visible = document.getElementById(part);
+			if (!visible)
+				return;
+			files.value = part;
+			visible.style.display = 'block';
+			location.hash = part;
+		}
+		function onChange() {
+			select(files.value);
+			window.scrollTo(0, 0);
+		}
+		if (location.hash != "") {
+			select(location.hash.substr(1));
+		}
+		if (!visible) {
+			select("file0");
+		}
+	})();
+	</script>
+</html>
