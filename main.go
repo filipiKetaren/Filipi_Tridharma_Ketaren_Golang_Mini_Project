@@ -36,7 +36,7 @@ func main() {
 
 	plantRepo := plantRepo.NewPlantRepo(db)
 	plantService := plantService.NewAuthService(plantRepo)
-	plantController := plantController.NewPlantController(plantService)
+	plantController := plantController.NewPlantController(plantService, authService)
 
 	conditionRepo := conditionRepo.NewPlantConditionRepo(db)
 	conditionService := conditionService.NewPlantConditionService(conditionRepo)

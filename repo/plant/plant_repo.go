@@ -17,12 +17,16 @@ type PlantRepo struct {
 }
 
 func (plantRepo PlantRepo) FindPlant(userID int) ([]entities.Plant, error) {
-	var plantDB []entities.Plant
-	result := plantRepo.db.Where("user_id = ?", userID).Find(&plantDB)
+	var plants []entities.Plant
+	result := plantRepo.db.Table("plants").
+		Select("plants.id, plants.user_id, plants.plant_name, plants.species, plants.location, users.id as user_id, users.username, users.email, users.password").
+		Joins("JOIN users ON users.id = plants.user_id").
+		Find(&plants)
+
 	if result.Error != nil {
-		return []entities.Plant{}, result.Error
+		return nil, result.Error
 	}
-	return plantDB, nil
+	return plants, nil
 }
 
 func (plantRepo PlantRepo) FindByIdPlant(id int, userID int) (entities.Plant, error) {
@@ -63,4 +67,13 @@ func (plantRepo PlantRepo) CheckUserLogin(id, userID int) (entities.Plant, error
 		return entities.Plant{}, err.Error
 	}
 	return plantDB, nil
+}
+
+func (r PlantRepo) FindPlantsByUserID(userID int) ([]entities.Plant, error) {
+	var plants []entities.Plant
+	err := r.db.Where("user_id = ?", userID).Find(&plants).Error
+	if err != nil {
+		return nil, err
+	}
+	return plants, nil
 }

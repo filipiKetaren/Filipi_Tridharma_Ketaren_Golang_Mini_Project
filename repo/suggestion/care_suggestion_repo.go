@@ -33,11 +33,42 @@ func (repo careSuggestionRepository) CheckPlantExists(plantID int) (bool, error)
 }
 
 func (repo careSuggestionRepository) FindSuggestion(userID int) ([]entities.CareSuggestion, error) {
-	var Suggestions []entities.CareSuggestion
-	result := repo.db.Joins("JOIN plants ON plants.id = care_suggestions.plant_id").
-		Where("plants.user_id = ?", userID).Find(&Suggestions)
+	var suggestions []entities.CareSuggestion
+	result := repo.db.
+		Joins("JOIN plants ON plants.id = care_suggestions.plant_id").
+		Where("plants.user_id = ?", userID).
+		Preload("Plant.User").
+		Preload("Plant").
+		Find(&suggestions)
+
+	// Log untuk memeriksa hasil query
 	if result.Error != nil {
-		return []entities.CareSuggestion{}, result.Error
+		return nil, result.Error
 	}
-	return Suggestions, nil
+	// fmt.Println("Suggestions Data:", suggestions) // Menampilkan data suggestions yang dimuat
+	return suggestions, nil
+}
+
+func (repo careSuggestionRepository) GetAll(plants *[]entities.Plant) error {
+	// Mengambil data dari database menggunakan GORM
+	err := repo.db.Preload("User").Find(plants).Error
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s careSuggestionRepository) GetPlantByID(plantID int) (entities.Plant, error) {
+	// Membuat objek untuk menyimpan data tanaman yang diambil
+	var plant entities.Plant
+
+	// Query untuk mengambil data tanaman berdasarkan plantID
+	err := s.db.Preload("User").First(&plant, plantID).Error
+	if err != nil {
+		// Jika terjadi error (misalnya data tidak ditemukan)
+		return plant, fmt.Errorf("failed to find plant with id %d: %w", plantID, err)
+	}
+
+	// Mengembalikan objek tanaman yang ditemukan
+	return plant, nil
 }

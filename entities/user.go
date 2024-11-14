@@ -7,3 +7,9 @@ type User struct {
 	Password string
 	Token    string
 }
+
+type UserResponse struct {
+	ID       int
+	Username string
+	Email    string
+}
