@@ -33,3 +33,19 @@ func (authRepo AuthRepo) Register(user entities.User) (entities.User, error) {
 	}
 	return userDB.ToEntities(), nil
 }
+
+func (authRepo *AuthRepo) FindByUserIDs(userID int, users *[]entities.User) error {
+	if err := authRepo.db.Where("id = ?", userID).Find(users).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
+func (authRepo *AuthRepo) FindByID(userID int) (entities.User, error) {
+	var user entities.User
+	err := authRepo.db.First(&user, userID).Error
+	if err != nil {
+		return entities.User{}, err // Return error jika tidak ditemukan atau query gagal
+	}
+	return user, nil
+}

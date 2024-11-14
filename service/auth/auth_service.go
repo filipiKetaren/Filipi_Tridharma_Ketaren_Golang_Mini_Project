@@ -64,6 +64,24 @@ func (authService AuthService) Register(user entities.User) (entities.User, erro
 	return user, nil
 }
 
+func (authService AuthService) FindUserByIDs(userID int) ([]entities.User, error) {
+	var users []entities.User
+	err := authService.authRepoInterface.FindByUserIDs(userID, &users)
+	if err != nil {
+		return nil, err
+	}
+	return users, nil
+}
+
+// FindByUserID mencari user berdasarkan ID
+func (authService AuthService) FindByUserID(userID int) (entities.User, error) {
+	user, err := authService.authRepoInterface.FindByID(userID)
+	if err != nil {
+		return entities.User{}, err // Return empty user struct jika error
+	}
+	return user, nil
+}
+
 func HashPassword(password string) (string, error) {
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), 14)
 	return string(bytes), err

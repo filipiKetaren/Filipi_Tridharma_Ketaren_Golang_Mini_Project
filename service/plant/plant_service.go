@@ -8,11 +8,13 @@ import (
 func NewAuthService(pr plant.PlantRepoInterface) *PlantService {
 	return &PlantService{
 		plantRepoInterface: pr,
+		// userRepo:           ur,
 	}
 }
 
 type PlantService struct {
 	plantRepoInterface plant.PlantRepoInterface
+	// userRepo           auth.AuthRepoInterface
 }
 
 func (plantService PlantService) FindPlant(userID int) ([]entities.Plant, error) {
@@ -58,3 +60,11 @@ func (plantService PlantService) CheckUserLogin(id, userID int) (entities.Plant,
 	}
 	return plant, nil
 }
+
+// func (s *PlantService) FindPlantsByUserID(userID int) ([]entities.User, error) {
+// 	var users []entities.User
+// 	if err := s.userRepo.FindByUserID(userID, &users); err != nil {
+// 		return nil, err
+// 	}
+// 	return users, nil
+// }

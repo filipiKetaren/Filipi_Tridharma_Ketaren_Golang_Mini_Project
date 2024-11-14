@@ -28,3 +28,11 @@ func (user user) ToEntities() entities.User {
 		Password: user.Password,
 	}
 }
+
+func (user user) ToEntitiesNoPassword() entities.User {
+	return entities.User{
+		ID:       user.ID,
+		Username: user.Username,
+		Email:    user.Email,
+	}
+}

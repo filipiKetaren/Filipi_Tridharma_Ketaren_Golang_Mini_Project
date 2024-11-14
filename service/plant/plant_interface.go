@@ -9,4 +9,5 @@ type PlantInterface interface {
 	UpdatePlant(plant entities.Plant) (entities.Plant, error)
 	DeletePlant(plant entities.Plant) (entities.Plant, error)
 	CheckUserLogin(id, userID int) (entities.Plant, error)
+	// FindPlantsByUserID(userID int) ([]entities.User, error)
 }
