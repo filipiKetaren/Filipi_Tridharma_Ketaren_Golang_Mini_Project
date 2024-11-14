@@ -43,3 +43,16 @@ func (c CareSuggestionService) FindSuggestion(userID int) ([]entities.CareSugges
 	}
 	return suggestion, nil
 }
+
+func (c CareSuggestionService) GetPlants(plants *[]entities.Plant) error {
+	// Mengambil data tanaman menggunakan repository
+	err := c.suggestionRepo.GetAll(plants)
+	if err != nil {
+		return fmt.Errorf("error fetching plants: %w", err)
+	}
+	return nil
+}
+
+func (c CareSuggestionService) GetPlantByID(plantID int) (entities.Plant, error) {
+	return c.suggestionRepo.GetPlantByID(plantID)
+}
