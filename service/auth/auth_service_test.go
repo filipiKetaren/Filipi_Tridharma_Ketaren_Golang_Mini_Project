@@ -1,6 +1,8 @@
 package auth
 
 import (
+	"errors"
+	"miniproject/constant"
 	"miniproject/entities"
 	"testing"
 
@@ -35,11 +37,11 @@ func (authRepoDummy AuthRepoDummy) FindByUserID(userID int) (entities.User, erro
 }
 
 func (authRepoDummy AuthRepoDummy) FindByID(userID int) (entities.User, error) {
-	return entities.User{ID: userID, Username: "filipi", Email: "test@gmail.com", Password: "123", Token: "321"}, nil
+	return entities.User{}, errors.New("user not found")
 }
 
 func (authRepoDummy AuthRepoDummy) FindByUserIDs(userID int, users *[]entities.User) error {
-	return nil
+	return errors.New("database error")
 }
 
 func (authRepoDummy AuthRepoDummy) Register(user entities.User) (entities.User, error) {
@@ -98,6 +100,32 @@ func TestAuthService_Login(t *testing.T) {
 	})
 }
 
+func TestAuthService_Register(t *testing.T) {
+	setup()
+
+	t.Run("sukses register", func(t *testing.T) {
+		user, err := authService.Register(entities.User{ID: 1, Username: "sasuke", Email: "test@gmail.com", Password: "123"})
+		assert.Nil(t, err)
+		assert.Equal(t, 1, user.ID)
+		assert.NotEmpty(t, user.Password)
+		assert.NotEmpty(t, user.Email)
+	})
+
+	t.Run("gagal register dengan password kosong", func(t *testing.T) {
+		user, err := authService.Register(entities.User{ID: 1, Username: "sasuke", Email: "test@gmail.com"})
+		assert.NotNil(t, err)
+		assert.Equal(t, constant.PASSWORD_IS_EMPTY.Error(), err.Error())
+		assert.Equal(t, 0, user.ID)
+	})
+
+	t.Run("gagal register dengan email kosong", func(t *testing.T) {
+		user, err := authService.Register(entities.User{ID: 1, Username: "sasuke", Password: "123"})
+		assert.NotNil(t, err)
+		assert.Equal(t, constant.EMAIL_IS_EMPTY.Error(), err.Error())
+		assert.Equal(t, 0, user.ID)
+	})
+}
+
 func TestPasswordHashing(t *testing.T) {
 	password := "123"
 	hashedPassword, err := HashPassword(password)
@@ -122,4 +150,50 @@ func TestAdd(t *testing.T) {
 			t.Error("hasilnya bukan 0")
 		}
 	})
+}
+
+// Unit test untuk FindUserByIDs
+func TestAuthService_FindUserByIDs(t *testing.T) {
+	t.Run("gagal mendapatkan user karena error dari repo", func(t *testing.T) {
+		// Simulasi error dengan membuat repo dummy yang mengembalikan error
+		authRepoDummyError := AuthRepoDummyWithError{}
+		authService := AuthService{authRepoInterface: authRepoDummyError}
+
+		_, err := authService.FindUserByIDs(1)
+		assert.NotNil(t, err)
+		assert.Equal(t, "database error", err.Error())
+	})
+}
+
+// Unit test untuk FindByUserID
+func TestAuthService_FindByUserID(t *testing.T) {
+	// Mock data dan authService
+	t.Run("gagal mendapatkan user karena error dari repo", func(t *testing.T) {
+		// Simulasi error dengan membuat repo dummy yang mengembalikan error
+		authRepoDummyError := AuthRepoDummyWithError{}
+		authService := AuthService{authRepoInterface: authRepoDummyError}
+
+		_, err := authService.FindByUserID(1)
+		assert.NotNil(t, err)
+		assert.Equal(t, "user not found", err.Error())
+	})
+}
+
+type AuthRepoDummyWithError struct{}
+
+func (authRepoDummyError AuthRepoDummyWithError) Login(user entities.User) (entities.User, error) {
+	return entities.User{}, errors.New("database error")
+}
+
+func (authRepoDummyError AuthRepoDummyWithError) Register(user entities.User) (entities.User, error) {
+	return entities.User{}, errors.New("database error")
+}
+
+func (authRepoDummyError AuthRepoDummyWithError) FindByUserIDs(userID int, users *[]entities.User) error {
+	return errors.New("database error")
+}
+
+// Implementasi mock FindByID yang selalu mengembalikan error
+func (authRepoDummyError AuthRepoDummyWithError) FindByID(userID int) (entities.User, error) {
+	return entities.User{}, errors.New("user not found")
 }

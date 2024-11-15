@@ -113,7 +113,7 @@
 				
 				<option value="file28">miniproject/route/route.go (0.0%)</option>
 				
-				<option value="file29">miniproject/service/auth/auth_service.go (52.3%)</option>
+				<option value="file29">miniproject/service/auth/auth_service.go (88.6%)</option>
 				
 				<option value="file30">miniproject/service/plant/plant_service.go (0.0%)</option>
 				
@@ -1549,7 +1549,7 @@ import (
 )
 
 type user struct {
-        ID       int `gorm: primarykey`
+        ID       int `gorm:primarykey`
         Username string
         Email    string
         Password string
@@ -2071,35 +2071,35 @@ func (authService AuthService) Login(user entities.User) (entities.User, error) 
         <span class="cov8" title="1">user.Token = token
         return user, nil</span>
 }
-func (authService AuthService) Register(user entities.User) (entities.User, error) <span class="cov0" title="0">{
-        if user.Email == "" </span><span class="cov0" title="0">{
+func (authService AuthService) Register(user entities.User) (entities.User, error) <span class="cov8" title="1">{
+        if user.Email == "" </span><span class="cov8" title="1">{
                 return entities.User{}, constant.EMAIL_IS_EMPTY
-        }</span> else<span class="cov0" title="0"> if user.Password == "" </span><span class="cov0" title="0">{
+        }</span> else<span class="cov8" title="1"> if user.Password == "" </span><span class="cov8" title="1">{
                 return entities.User{}, constant.PASSWORD_IS_EMPTY
         }</span>
 
-        <span class="cov0" title="0">hash, _ := HashPassword(user.Password)
+        <span class="cov8" title="1">hash, _ := HashPassword(user.Password)
         user.Password = hash
         user, err := authService.authRepoInterface.Register(user)
         if err != nil </span><span class="cov0" title="0">{
                 return entities.User{}, err
         }</span>
-        <span class="cov0" title="0">return user, nil</span>
+        <span class="cov8" title="1">return user, nil</span>
 }
 
-func (authService AuthService) FindUserByIDs(userID int) ([]entities.User, error) <span class="cov0" title="0">{
+func (authService AuthService) FindUserByIDs(userID int) ([]entities.User, error) <span class="cov8" title="1">{
         var users []entities.User
         err := authService.authRepoInterface.FindByUserIDs(userID, &amp;users)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 return nil, err
         }</span>
         <span class="cov0" title="0">return users, nil</span>
 }
 
 // FindByUserID mencari user berdasarkan ID
-func (authService AuthService) FindByUserID(userID int) (entities.User, error) <span class="cov0" title="0">{
+func (authService AuthService) FindByUserID(userID int) (entities.User, error) <span class="cov8" title="1">{
         user, err := authService.authRepoInterface.FindByID(userID)
-        if err != nil </span><span class="cov0" title="0">{
+        if err != nil </span><span class="cov8" title="1">{
                 return entities.User{}, err // Return empty user struct jika error
         }</span>
         <span class="cov0" title="0">return user, nil</span>
