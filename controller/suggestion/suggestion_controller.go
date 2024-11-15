@@ -105,11 +105,8 @@ func (controller PlantSuggestionController) GetCareSuggestion(c echo.Context) er
 
 	// Menyusun respons dengan data tanaman, user, dan saran perawatan
 	response := response.CareSuggestionResponse{
-		ID:      plantID,
-		PlantID: plantID,
 		Plant: response.PlantData{
-			ID:     plant.ID,
-			UserID: plant.UserID,
+			ID: plant.ID,
 			User: response.User{
 				ID:       plant.User.ID,
 				Username: plant.User.Username,
@@ -123,7 +120,7 @@ func (controller PlantSuggestionController) GetCareSuggestion(c echo.Context) er
 	}
 
 	// Kirimkan hasil rekomendasi ke client
-	return c.JSON(http.StatusOK, map[string]interface{}{"data": response})
+	return base.SuccessResponseSuggestion(c, response)
 }
 
 func (plantSuggestionController PlantSuggestionController) FindController(c echo.Context) error {
@@ -161,5 +158,5 @@ func (plantSuggestionController PlantSuggestionController) FindController(c echo
 	// Log untuk memeriksa data responseData
 	// fmt.Println("Response Data:", responseData)
 
-	return c.JSON(http.StatusOK, map[string]interface{}{"data": responseData})
+	return base.SliceSuccessResponseSuggetion(c, responseData)
 }

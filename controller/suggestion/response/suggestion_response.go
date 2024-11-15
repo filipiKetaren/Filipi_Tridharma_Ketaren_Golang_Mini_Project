@@ -2,24 +2,36 @@ package response
 
 import (
 	"miniproject/entities"
+	"net/http"
+
+	"github.com/labstack/echo/v4"
 )
 
 // Model utama untuk CareSuggestion response
 type CareSuggestionResponse struct {
-	ID         int       `json:"id"`
-	PlantID    int       `json:"plant_id"`
 	Plant      PlantData `json:"plant"`
 	Suggestion string    `json:"suggestion"`
 }
 
-type Suggestions struct {
-	SuggestionResponse CareSuggestionResponse `json:"Data"`
+type SuggestionResponses struct {
+	Status  bool                     `json:"status"`
+	Message string                   `json:"message"`
+	Data    []CareSuggestionResponse `json:"data"`
 }
+
+type SuggestionResponse struct {
+	Status  bool                   `json:"status"`
+	Message string                 `json:"message"`
+	Data    CareSuggestionResponse `json:"data"`
+}
+
+// type Suggestions struct {
+// 	SuggestionResponse CareSuggestionResponse `json:"data"`
+// }
 
 // Model untuk data Plant dan User terkait
 type PlantData struct {
 	ID        int    `json:"id"`
-	UserID    int    `json:"user_id"`
 	User      User   `json:"user"`
 	PlantName string `json:"plant_name"`
 	Species   string `json:"species"`
@@ -35,20 +47,13 @@ type User struct {
 
 func SplitSliceResponse(suggestions []entities.CareSuggestion, plantEntities map[int]entities.Plant) []CareSuggestionResponse {
 	careSuggestionResponses := make([]CareSuggestionResponse, 0)
-
-	// Log untuk memeriksa data suggestions yang diterima
-	// fmt.Println("Suggestions received:", suggestions)
-
 	for _, suggestion := range suggestions {
 		// Pastikan plantEntities memiliki entry dengan key PlantID
 		plant := plantEntities[suggestion.PlantID]
 		// Bentuk response untuk setiap CareSuggestion
 		careSuggestionResponse := CareSuggestionResponse{
-			ID:      suggestion.ID,
-			PlantID: suggestion.PlantID,
 			Plant: PlantData{
-				ID:     plant.ID,
-				UserID: plant.UserID,
+				ID: plant.ID,
 				User: User{
 					ID:       plant.User.ID,
 					Username: plant.User.Username,
@@ -62,9 +67,25 @@ func SplitSliceResponse(suggestions []entities.CareSuggestion, plantEntities map
 		}
 		careSuggestionResponses = append(careSuggestionResponses, careSuggestionResponse)
 	}
-
-	// // Log untuk memeriksa data response yang terbentuk
-	// fmt.Println("CareSuggestion Responses:", careSuggestionResponses)
-
 	return careSuggestionResponses
+}
+
+func SliceSuccessResponse(c echo.Context, Suggestion []CareSuggestionResponse) error {
+	// Membungkus data ke dalam struct PlantResponses
+	plantResponses := SuggestionResponses{
+		Status:  true,
+		Message: "sukses",
+		Data:    Suggestion,
+	}
+	return c.JSON(http.StatusOK, plantResponses)
+}
+
+func SuccessResponseSuggestion(c echo.Context, Suggestion CareSuggestionResponse) error {
+	// Membungkus data ke dalam struct PlantResponses
+	plantResponses := SuggestionResponse{
+		Status:  true,
+		Message: "sukses",
+		Data:    Suggestion,
+	}
+	return c.JSON(http.StatusOK, plantResponses)
 }

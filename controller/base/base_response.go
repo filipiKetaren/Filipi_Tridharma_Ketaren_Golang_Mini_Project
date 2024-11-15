@@ -1,7 +1,8 @@
 package base
 
 import (
-	"miniproject/controller/plant_condition/response"
+	rp "miniproject/controller/plant_condition/response"
+	"miniproject/controller/suggestion/response"
 	"miniproject/helper"
 	"net/http"
 
@@ -15,9 +16,9 @@ type BaseResponse struct {
 }
 
 type PlantConditionsResponse struct {
-	Status    bool                            `json:"status"`
-	Message   string                          `json:"message"`
-	Condition response.PlantConditionResponse `json:"data_plant_condition"`
+	Status    bool                      `json:"status"`
+	Message   string                    `json:"message"`
+	Condition rp.PlantConditionResponse `json:"data_plant_condition"`
 }
 type SliceConditionResponse struct {
 	Status    bool        `json:"status"`
@@ -41,10 +42,30 @@ func ErrorResponse(c echo.Context, err error) error {
 	})
 }
 
-func SliceSuccessResponse(c echo.Context, Condition []response.Condition) error {
-	return c.JSON(http.StatusOK, response.PlantConditionsResponse{
+func SuccessResponseSlice(c echo.Context, plantData []rp.PlantCondition) error {
+	return c.JSON(http.StatusOK, rp.PlantConditionMajemukResponse{
 		Status:    true,
 		Message:   "sukses",
-		Condition: Condition,
+		Condition: plantData,
 	})
+}
+
+func SuccessResponseSuggestion(c echo.Context, Suggestion response.CareSuggestionResponse) error {
+	// Membungkus data ke dalam struct PlantResponses
+	plantResponses := response.SuggestionResponse{
+		Status:  true,
+		Message: "sukses",
+		Data:    Suggestion,
+	}
+	return c.JSON(http.StatusOK, plantResponses)
+}
+
+func SliceSuccessResponseSuggetion(c echo.Context, Suggestion []response.CareSuggestionResponse) error {
+	// Membungkus data ke dalam struct PlantResponses
+	plantResponses := response.SuggestionResponses{
+		Status:  true,
+		Message: "sukses",
+		Data:    Suggestion,
+	}
+	return c.JSON(http.StatusOK, plantResponses)
 }

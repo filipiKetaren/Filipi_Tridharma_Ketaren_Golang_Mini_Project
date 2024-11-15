@@ -107,7 +107,7 @@ func SliceSuccessResponse(c echo.Context, plantResponse []PlantResponse) error {
 	// Membungkus data ke dalam struct PlantResponses
 	plantResponses := PlantResponses{
 		Status:  true,
-		Message: "success",
+		Message: "sukses",
 		Data:    plantResponse,
 	}
 	return c.JSON(http.StatusOK, plantResponses)
