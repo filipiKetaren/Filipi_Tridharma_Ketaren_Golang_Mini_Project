@@ -23,7 +23,7 @@ type AuthService struct {
 
 func (authService AuthService) Login(user entities.User) (entities.User, error) {
 	if user.Email == "" {
-		return entities.User{}, constant.EMAIL_NOT_FOUND
+		return entities.User{}, constant.EMAIL_IS_EMPTY
 	} else if user.Password == "" {
 		return entities.User{}, constant.PASSWORD_IS_EMPTY
 	}
@@ -50,7 +50,7 @@ func (authService AuthService) Login(user entities.User) (entities.User, error) 
 }
 func (authService AuthService) Register(user entities.User) (entities.User, error) {
 	if user.Email == "" {
-		return entities.User{}, constant.EMAIL_NOT_FOUND
+		return entities.User{}, constant.EMAIL_IS_EMPTY
 	} else if user.Password == "" {
 		return entities.User{}, constant.PASSWORD_IS_EMPTY
 	}
@@ -90,4 +90,12 @@ func HashPassword(password string) (string, error) {
 func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
+}
+
+func Add(a, b int) int {
+	result := a + b
+	if result < 0 {
+		return 0
+	}
+	return result
 }
