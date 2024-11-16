@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "Dockerfile"
-      - "docker-compose.yml"
 
 jobs:
   test:
@@ -35,7 +32,7 @@ jobs:
         run: docker build --cache-from=type=local,src=/tmp/.build-cache -t filipiketaren/alta:1.0.0 .
       - name: docker hub login
         uses: docker/login-action@v2
-        with: 
+        with:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_TOKEN}}
       - name: push image
@@ -51,27 +48,29 @@ jobs:
     steps:
       - name: Check out the code
         uses: actions/checkout@v3
+
       - name: Create PEM file from secret
         run: |
           echo "${{ secrets.EC2_PEM }}" > ec2-key.pem
-          chmod 600 ec2-key.pem  # Set appropriate permissions
+          chmod 600 ec2-key.pem
+
       - name: Deploy to EC2
         run: |
-          ssh -i ec2-key.pem -o StrictHostKeyChecking=no -v $EC2_USER@$EC2_HOST << EOF
-            echo "Stopping and removing current container..."
-            sudo docker ps -q --filter "name=my-container" | grep -q . && sudo docker stop my-container || true
-            sudo docker ps -a -q --filter "name=my-container" | grep -q . && sudo docker rm my-container || true
-
-            echo "Removing old image to avoid conflicts..."
-            sudo docker rmi $IMAGE_URI || true
+          ssh -i ec2-key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << EOF
+            echo "Stopping and removing existing container..."
+            if [ \$(sudo docker ps -aq -f name=my-container) ]; then
+              sudo docker stop my-container || true
+              sudo docker rm my-container || true
+            fi
 
             echo "Pulling new image..."
             sudo docker pull $IMAGE_URI
 
-            echo "Running new container..."
+            echo "Starting new container..."
             sudo docker run -d --name my-container -p 8000:8000 $IMAGE_URI
 
             echo "Deployment complete!"
           EOF
+
       - name: Clean up PEM file
         run: rm -f ec2-key.pem
