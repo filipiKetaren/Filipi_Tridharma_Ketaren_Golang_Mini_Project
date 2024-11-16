@@ -8,8 +8,8 @@ import (
 )
 
 type PlantCondition struct {
-	ID               int       `json:"id"`
-	PlantID          int       `json:"plant_id"`
+	// ID               int       `json:"id"`
+	// PlantID          int       `json:"plant_id"`
 	Plant            PlantData `json:"plant"`
 	MoistureLevel    float32   `json:"moisture_level"`
 	SunlightExposure string    `json:"sunlight_exposure"`
@@ -20,7 +20,7 @@ type PlantCondition struct {
 type PlantConditionsResponse struct {
 	Status    bool        `json:"status"`
 	Message   string      `json:"message"`
-	Condition []Condition `json:"data_plant_condition"`
+	Condition []Condition `json:"data"`
 }
 
 type Condition struct {
@@ -42,9 +42,15 @@ type User struct {
 }
 
 type PlantConditionSingularResponse struct {
-	Status    bool                   `json:"status"`
-	Message   string                 `json:"message"`
-	Condition PlantConditionResponse `json:"data_plant_condition"`
+	Status    bool           `json:"status"`
+	Message   string         `json:"message"`
+	Condition PlantCondition `json:"data"`
+}
+
+type PlantConditionMajemukResponse struct {
+	Status    bool             `json:"status"`
+	Message   string           `json:"message"`
+	Condition []PlantCondition `json:"data"`
 }
 
 type PlantConditionResponse struct {
@@ -53,8 +59,6 @@ type PlantConditionResponse struct {
 
 func FromEntities(plantCondition entities.PlantCondition) PlantCondition {
 	return PlantCondition{
-		ID:               plantCondition.ID,
-		PlantID:          plantCondition.PlantID,
 		MoistureLevel:    plantCondition.MoistureLevel,
 		SunlightExposure: plantCondition.SunlightExposure,
 		Temperature:      plantCondition.Temperature,
@@ -62,63 +66,62 @@ func FromEntities(plantCondition entities.PlantCondition) PlantCondition {
 	}
 }
 
-func SplitSliceResponse(plantData []entities.PlantCondition, plantEntities map[int]entities.Plant) []Condition {
-	conditions := make([]Condition, 0)
+func SplitSliceResponse(plantData []entities.PlantCondition) []PlantCondition {
+	var result []PlantCondition
 	for _, condition := range plantData {
-		plant := plantEntities[condition.PlantID]
-		conditionData := Condition{
-			PlantCondition: PlantCondition{
-				ID:      condition.ID,
-				PlantID: condition.PlantID,
-				Plant: PlantData{
-					ID: plant.ID,
-					User: User{
-						ID:       plant.UserID,
-						Username: plant.User.Username, // Replace with actual username
-						Email:    plant.User.Email,    // Replace with actual email
-					},
-					PlantName: plant.PlantName,
-					Species:   plant.Species,
-					Location:  plant.Location,
-				},
-				MoistureLevel:    condition.MoistureLevel,
-				SunlightExposure: condition.SunlightExposure,
-				Temperature:      condition.Temperature,
-				Notes:            condition.Notes,
-			},
-		}
-		conditions = append(conditions, conditionData)
-	}
-	return conditions
-}
-
-func SplitResponse(plantData entities.PlantCondition, plantEntity entities.Plant) PlantConditionResponse {
-	plantConditionResponse := PlantConditionResponse{
-		PlantCondition: PlantCondition{
-			ID:      plantData.ID,
-			PlantID: plantData.PlantID,
+		// Pastikan User dimuat dengan benar
+		result = append(result, PlantCondition{
 			Plant: PlantData{
-				ID: plantEntity.ID,
+				ID: condition.Plant.ID,
 				User: User{
-					ID:       plantEntity.UserID,
-					Username: plantEntity.User.Username, // Menggunakan username dari entitas Plant
-					Email:    plantEntity.User.Email,    // Replace with actual email
+					ID:       condition.Plant.User.ID,
+					Username: condition.Plant.User.Username,
+					Email:    condition.Plant.User.Email,
 				},
-				PlantName: plantEntity.PlantName,
-				Species:   plantEntity.Species,
-				Location:  plantEntity.Location,
+				PlantName: condition.Plant.PlantName,
+				Species:   condition.Plant.Species,
+				Location:  condition.Plant.Location,
 			},
-			MoistureLevel:    plantData.MoistureLevel,
-			SunlightExposure: plantData.SunlightExposure,
-			Temperature:      plantData.Temperature,
-			Notes:            plantData.Notes,
-		},
+			MoistureLevel:    condition.MoistureLevel,
+			SunlightExposure: condition.SunlightExposure,
+			Temperature:      condition.Temperature,
+			Notes:            condition.Notes,
+		})
 	}
-	return plantConditionResponse
+	return result
 }
 
-func SuccessResponseCondition(c echo.Context, plantData PlantConditionResponse) error {
+func SplitResponse(plantData entities.PlantCondition, plantEntity entities.Plant) PlantCondition {
+	PlantCondition := PlantCondition{
+		Plant: PlantData{
+			ID: plantEntity.ID,
+			User: User{
+				ID:       plantEntity.UserID,
+				Username: plantEntity.User.Username, // Menggunakan username dari entitas Plant
+				Email:    plantEntity.User.Email,    // Replace with actual email
+			},
+			PlantName: plantEntity.PlantName,
+			Species:   plantEntity.Species,
+			Location:  plantEntity.Location,
+		},
+		MoistureLevel:    plantData.MoistureLevel,
+		SunlightExposure: plantData.SunlightExposure,
+		Temperature:      plantData.Temperature,
+		Notes:            plantData.Notes,
+	}
+	return PlantCondition
+}
+
+func SuccessResponseCondition(c echo.Context, plantData PlantCondition) error {
 	return c.JSON(http.StatusOK, PlantConditionSingularResponse{
+		Status:    true,
+		Message:   "sukses",
+		Condition: plantData,
+	})
+}
+
+func SuccessResponseSlice(c echo.Context, plantData []PlantCondition) error {
+	return c.JSON(http.StatusOK, PlantConditionMajemukResponse{
 		Status:    true,
 		Message:   "sukses",
 		Condition: plantData,

@@ -38,37 +38,30 @@ func (plantConditionController PlantConditionController) FindController(c echo.C
 	// 	fmt.Printf("Condition ID: %d, Plant ID: %d, User ID: %d, Username: %s\n",
 	// 		condition.ID, condition.Plant.ID, condition.Plant.User.ID, condition.Plant.User.Username)
 	// }
+	response := response.SplitSliceResponse(plantData)
+	// var result []response.PlantCondition
+	// for _, condition := range plantData {
+	// 	// Pastikan User dimuat dengan benar
+	// 	result = append(result, response.PlantCondition{
+	// 		Plant: response.PlantData{
+	// 			ID: condition.Plant.ID,
+	// 			User: response.User{
+	// 				ID:       condition.Plant.User.ID,
+	// 				Username: condition.Plant.User.Username,
+	// 				Email:    condition.Plant.User.Email,
+	// 			},
+	// 			PlantName: condition.Plant.PlantName,
+	// 			Species:   condition.Plant.Species,
+	// 			Location:  condition.Plant.Location,
+	// 		},
+	// 		MoistureLevel:    condition.MoistureLevel,
+	// 		SunlightExposure: condition.SunlightExposure,
+	// 		Temperature:      condition.Temperature,
+	// 		Notes:            condition.Notes,
+	// 	})
+	// }
 
-	// Prepare data for response as per the new structure
-	var result []response.Condition
-	for _, condition := range plantData {
-		// Pastikan User dimuat dengan benar
-		result = append(result, response.Condition{
-			PlantCondition: response.PlantCondition{
-				ID:      condition.ID,
-				PlantID: condition.PlantID,
-				Plant: response.PlantData{
-					ID: condition.Plant.ID,
-					User: response.User{
-						ID:       condition.Plant.User.ID,
-						Username: condition.Plant.User.Username,
-						Email:    condition.Plant.User.Email,
-					},
-					PlantName: condition.Plant.PlantName,
-					Species:   condition.Plant.Species,
-					Location:  condition.Plant.Location,
-				},
-				MoistureLevel:    condition.MoistureLevel,
-				SunlightExposure: condition.SunlightExposure,
-				Temperature:      condition.Temperature,
-				Notes:            condition.Notes,
-			},
-		})
-	}
-
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"data_plant_condition": result,
-	})
+	return base.SuccessResponseSlice(c, response)
 }
 
 func (plantConditionController PlantConditionController) FindByIdController(c echo.Context) error {
