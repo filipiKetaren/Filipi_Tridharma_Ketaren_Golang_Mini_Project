@@ -60,7 +60,7 @@ func (controller PlantSuggestionController) GetCareSuggestion(c echo.Context) er
 	defer client.Close()
 
 	// Tentukan model AI yang digunakan
-	model := client.GenerativeModel("gemini-pro")
+	model := client.GenerativeModel("gemini-1.5-flash")
 	model.SetTemperature(0.7)
 
 	// Siapkan kondisi tanaman untuk dikirim ke model AI
