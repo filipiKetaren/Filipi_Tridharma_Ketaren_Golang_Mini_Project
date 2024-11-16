@@ -29,20 +29,20 @@ jobs:
         run: |
           echo "${{secrets.ENV}}" | base64 --decode > .env
       - name: build docker
-        run: docker build --cache-from=type=local,src=/tmp/.build-cache -t filipiketaren/alta:1.0.0 .
+        run: docker build --cache-from=type=local,src=/tmp/.build-cache -t filipiketaren/miniproject:1.0.0 .
       - name: docker hub login
         uses: docker/login-action@v2
         with:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_TOKEN}}
       - name: push image
-        run: docker push filipiketaren/alta:1.0.0
+        run: docker push filipiketaren/miniproject:1.0.0
 
   deploy:
     needs: build-and-push-docker
     runs-on: ubuntu-latest
     env:
-      IMAGE_URI: 'filipiketaren/alta:1.0.0'
+      IMAGE_URI: 'filipiketaren/miniproject:1.0.0'
       EC2_HOST: ${{ secrets.EC2_HOST }}
       EC2_USER: ${{ secrets.EC2_USER }}
     steps:
@@ -57,8 +57,9 @@ jobs:
       - name: Deploy to EC2
         run: |
           ssh -i ec2-key.pem -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << EOF
-            echo "Stopping and removing existing container..."
+            echo "Checking for existing container..."
             if [ \$(sudo docker ps -aq -f name=my-container) ]; then
+              echo "Stopping and removing existing container..."
               sudo docker stop my-container || true
               sudo docker rm my-container || true
             fi
