@@ -91,11 +91,3 @@ func CheckPasswordHash(password, hash string) bool {
 	err := bcrypt.CompareHashAndPassword([]byte(hash), []byte(password))
 	return err == nil
 }
-
-func Add(a, b int) int {
-	result := a + b
-	if result < 0 {
-		return 0
-	}
-	return result
-}

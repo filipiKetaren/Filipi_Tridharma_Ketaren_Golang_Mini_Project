@@ -136,22 +136,6 @@ func TestPasswordHashing(t *testing.T) {
 	assert.True(t, match)
 }
 
-func TestAdd(t *testing.T) {
-	t.Run("keduanya positif", func(t *testing.T) {
-		result := Add(5, 5)
-		if result != 10 {
-			t.Error("hasilnya bukan 10")
-		}
-	})
-
-	t.Run("keduanya negatif", func(t *testing.T) {
-		result := Add(-5, -5)
-		if result != 0 {
-			t.Error("hasilnya bukan 0")
-		}
-	})
-}
-
 // Unit test untuk FindUserByIDs
 func TestAuthService_FindUserByIDs(t *testing.T) {
 	t.Run("gagal mendapatkan user karena error dari repo", func(t *testing.T) {
