@@ -1,0 +1,1779 @@
+{
+	"info": {
+		"_postman_id": "0074e5b8-f08d-427e-a1ef-b8108de3b8e9",
+		"name": "Mini Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38993574"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/register",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gaming.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/register",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 06:53:39 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "99"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"ID\": 3,\n        \"Username\": \"filipi\",\n        \"Email\": \"filipi@gaming.com\"\n    }\n}"
+						},
+						{
+							"name": "register with empty email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/register",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:09:57 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"email is empty\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "register with empty password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/register",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:10:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"password is empty\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gmail.com\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/login",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gaming.com\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/login",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 06:58:02 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "231"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"ID\": 3,\n        \"Username\": \"filipi\",\n        \"Email\": \"filipi@gaming.com\",\n        \"Token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjozLCJleHAiOjE3MzE5OTk0ODJ9.72l9VjCbJZcOH_J60b-LOfR-BlabdzjBIxa49s5oIH8\"\n    }\n}"
+						},
+						{
+							"name": "login with empty email",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"password\": \"123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/login",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:10:33 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"email is empty\",\n    \"data\": null\n}"
+						},
+						{
+							"name": "login with empty password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\": \"filipi\",\r\n    \"email\": \"filipi@gmail.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/login",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:10:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "59"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"password is empty\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "plant",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 09:59:14 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data_plant\": [\n        {\n            \"plant\": {\n                \"ID\": 2,\n                \"User\": {\n                    \"id\": 1,\n                    \"username\": \"doni\",\n                    \"email\": \"doni@gaming.com\"\n                },\n                \"PlantName\": \"Aloe Vera\",\n                \"Species\": \"Aloe\",\n                \"Location\": \"Living Room\"\n            }\n        },\n        {\n            \"plant\": {\n                \"ID\": 1,\n                \"User\": {\n                    \"id\": 1,\n                    \"username\": \"doni\",\n                    \"email\": \"doni@gaming.com\"\n                },\n                \"PlantName\": \"Aloe Vera\",\n                \"Species\": \"Aloe\",\n                \"Location\": \"Living Room\"\n            }\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants/4",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find by id success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 09:59:27 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        }\n    }\n}"
+						},
+						{
+							"name": "find by ide with record not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/6",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"6"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 17:19:06 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plant_name\": \"Aloe Vera\",\r\n  \"species\": \"Aloe\",\r\n  \"location\": \"Living Room\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"plant_name\": \"Aloe Vera\",\r\n  \"species\": \"Aloe\",\r\n  \"location\": \"Living Room\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 09:59:34 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 3,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"plant_name\": \"Aloe Vera\",\r\n  \"species\": \"Aloe\",\r\n  \"location\": \"Living Room\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants/1",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"plant_name\": \"Aloe Vera\",\r\n  \"species\": \"Aloe\",\r\n  \"location\": \"Living Room\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 09:59:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        }\n    }\n}"
+						},
+						{
+							"name": "update with record not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"plant_name\": \"Aloe Vera\",\r\n  \"species\": \"Aloe\",\r\n  \"location\": \"Living Room\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:11:42 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants/1",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 10:00:04 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "188"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 1,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        }\n    }\n}"
+						},
+						{
+							"name": "delete with record not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:11:53 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "plant_condition",
+			"item": [
+				{
+					"name": "find",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/condition",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"condition"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 10:00:48 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "280"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": [\n        {\n            \"plant\": {\n                \"id\": 2,\n                \"user\": {\n                    \"id\": 1,\n                    \"username\": \"doni\",\n                    \"email\": \"doni@gaming.com\"\n                },\n                \"plant_name\": \"Aloe Vera\",\n                \"species\": \"Aloe\",\n                \"location\": \"Living Room\"\n            },\n            \"moisture_level\": 50,\n            \"sunlight_exposure\": \"medium\",\n            \"temperature\": 25,\n            \"notes\": \"Looks healthy\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "find by id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/condition/1",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"condition",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "find by id success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/3",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 02:56:01 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        },\n        \"moisture_level\": 50,\n        \"sunlight_exposure\": \"medium\",\n        \"temperature\": 25,\n        \"notes\": \"Looks healthy\"\n    }\n}"
+						},
+						{
+							"name": "find by id with record not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"1"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:12:13 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"plant_id\": 5, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/condition",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"condition"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plant_id\": 2, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 10:00:42 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        },\n        \"moisture_level\": 50,\n        \"sunlight_exposure\": \"medium\",\n        \"temperature\": 25,\n        \"notes\": \"Looks healthy\"\n    }\n}"
+						},
+						{
+							"name": "add with record plant id not found",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plant_id\": 2, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 17:23:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"plant_id\": 5, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium high\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://54.209.170.93:8000/condition/6",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"condition",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "update success",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plant_id\": 2, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium high\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/1",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 15 Nov 2024 10:01:55 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "283"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        },\n        \"moisture_level\": 50,\n        \"sunlight_exposure\": \"medium high\",\n        \"temperature\": 25,\n        \"notes\": \"Looks healthy\"\n    }\n}"
+						},
+						{
+							"name": "update with record not found",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plant_id\": 2, \r\n  \"date\": \"2024-11-01\",\r\n  \"moisture_level\": 50,\r\n  \"sunlight_exposure\": \"medium high\",\r\n  \"temperature\": 25,\r\n  \"notes\": \"Looks healthy\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/6",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"6"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 17:25:28 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/condition/6",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"condition",
+								"6"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "delete success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzE3ODM5MjR9.NnloUWaYHdfjIr3ieeWEWEpkQ7af2UncGeB2--oRkkE",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/4",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 16 Nov 2024 03:19:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "278"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        },\n        \"moisture_level\": 50,\n        \"sunlight_exposure\": \"medium\",\n        \"temperature\": 25,\n        \"notes\": \"Looks healthy\"\n    }\n}"
+						},
+						{
+							"name": "delete with record not found",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJleHAiOjE3MzIxMjMwMzV9.Lg66VwcLkOAejQtKD__WbAiPb3kzvBvoMx9VWqvcMxs",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/condition/6",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"condition",
+										"6"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 17:26:22 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "58"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": false,\n    \"message\": \"record not found\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "plant_suggestion",
+			"item": [
+				{
+					"name": "suggestion",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzIwNzMwODl9.0BpYJvMmsj5_Zf137q-leFhMsyGxMlC-hvtIjPg-abo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/plants/4/care-suggestion",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"plants",
+								"4",
+								"care-suggestion"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "suggestion success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzIwNzMwODl9.0BpYJvMmsj5_Zf137q-leFhMsyGxMlC-hvtIjPg-abo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/2/care-suggestion",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"2",
+										"care-suggestion"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 03:25:15 GMT"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": {\n        \"plant\": {\n            \"id\": 2,\n            \"user\": {\n                \"id\": 1,\n                \"username\": \"doni\",\n                \"email\": \"doni@gaming.com\"\n            },\n            \"plant_name\": \"Aloe Vera\",\n            \"species\": \"Aloe\",\n            \"location\": \"Living Room\"\n        },\n        \"suggestion\": \"\\\"Dengan kelembapan 50%, paparan sinar matahari sedang, suhu 25.0°C, dan catatan \\\\\\\"terlihat sehat,\\\\\\\" tanaman Anda berada dalam kondisi yang cukup baik.  Rekomendasi perawatan bergantung pada jenis tanamannya, tetapi secara umum, berikut beberapa saran:\\\\n\\\\n**Perawatan Umum:**\\\\n\\\\n* **Lanjutkan penyiraman yang konsisten:**  Kelembapan 50% cukup baik, tetapi Anda tetap perlu menyiram saat tanah mulai mengering. Jangan sampai tanah terendam air atau terlalu kering.  Periksa kelembapan tanah dengan jari Anda sebelum menyiram.\\\\n* **Pertahankan paparan sinar matahari:** Sinar matahari sedang tampaknya cocok.  Jika tanaman Anda tampak layu atau pertumbuhannya lambat, pertimbangkan untuk memindahkannya ke tempat yang sedikit lebih cerah atau lebih teduh, tergantung pada kebutuhan spesies tanaman Anda.\\\\n* **Perhatikan suhu:** 25°C adalah suhu yang nyaman untuk banyak tanaman.  Namun, suhu yang terlalu tinggi atau rendah dapat mempengaruhi pertumbuhan.  Perhatikan perubahan suhu ekstrem dan sesuaikan lingkungan tanaman Anda jika perlu.\\\\n* **Pemupukan:**  Berikan pupuk seimbang sesuai dengan kebutuhan spesies tanaman Anda dan musim pertumbuhannya.  Terlalu banyak pupuk dapat membahayakan tanaman.\\\\n* **Periksa hama dan penyakit:** Meskipun catatan menyebutkan tanaman terlihat sehat, periksa secara berkala adanya hama atau tanda-tanda penyakit seperti perubahan warna daun, bintik-bintik, atau hama.  Bersihkan tanaman Anda secara teratur untuk mencegah masalah.\\\\n* **Potting:** Pastikan pot memiliki drainase yang baik untuk mencegah pembusukan akar.  Jika perlu, pindahkan tanaman ke pot yang lebih besar saat akarnya sudah memenuhi pot yang ada.\\\\n\\\\n**Informasi Tambahan yang Dibutuhkan:**\\\\n\\\\nUntuk memberikan rekomendasi yang lebih spesifik, saya memerlukan informasi tambahan seperti:\\\\n\\\\n* **Jenis tanaman:**  Ini sangat penting karena kebutuhan setiap tanaman berbeda.\\\\n* **Frekuensi penyiraman saat ini:**  Ini membantu menilai apakah jadwal penyiraman Anda sudah tepat.\\\\n* **Jenis tanah:**  Jenis tanah yang digunakan dapat mempengaruhi drainase dan nutrisi tanaman.\\\\n\\\\n\\\\nDengan informasi tambahan ini, saya dapat memberikan rekomendasi perawatan yang lebih akurat dan efektif.\\\\n\\\"\"\n    }\n}"
+						},
+						{
+							"name": "suggestion with plant condition not found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzIwNzMwODl9.0BpYJvMmsj5_Zf137q-leFhMsyGxMlC-hvtIjPg-abo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/plants/4/care-suggestion",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"plants",
+										"4",
+										"care-suggestion"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 18 Nov 2024 03:12:54 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "38"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": \"Plant condition not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "show_all",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzIwNzMwODl9.0BpYJvMmsj5_Zf137q-leFhMsyGxMlC-hvtIjPg-abo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://54.209.170.93:8000/suggestion",
+							"protocol": "http",
+							"host": [
+								"54",
+								"209",
+								"170",
+								"93"
+							],
+							"port": "8000",
+							"path": [
+								"suggestion"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "show all success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3MzIwNzMwODl9.0BpYJvMmsj5_Zf137q-leFhMsyGxMlC-hvtIjPg-abo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://54.209.170.93:8000/suggestion",
+									"protocol": "http",
+									"host": [
+										"54",
+										"209",
+										"170",
+										"93"
+									],
+									"port": "8000",
+									"path": [
+										"suggestion"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 17 Nov 2024 03:26:05 GMT"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": true,\n    \"message\": \"sukses\",\n    \"data\": [\n        {\n            \"plant\": {\n                \"id\": 2,\n                \"user\": {\n                    \"id\": 1,\n                    \"username\": \"doni\",\n                    \"email\": \"doni@gaming.com\"\n                },\n                \"plant_name\": \"Aloe Vera\",\n                \"species\": \"Aloe\",\n                \"location\": \"Living Room\"\n            },\n            \"suggestion\": \"\\\"Dengan kelembapan 50%, paparan sinar matahari sedang, suhu 25.0°C, dan catatan \\\\\\\"terlihat sehat,\\\\\\\" tanaman Anda berada dalam kondisi yang cukup baik.  Rekomendasi perawatan bergantung pada jenis tanamannya, tetapi secara umum, berikut beberapa saran:\\\\n\\\\n**Perawatan Umum:**\\\\n\\\\n* **Lanjutkan penyiraman yang konsisten:**  Kelembapan 50% cukup baik, tetapi Anda tetap perlu menyiram saat tanah mulai mengering. Jangan sampai tanah terendam air atau terlalu kering.  Periksa kelembapan tanah dengan jari Anda sebelum menyiram.\\\\n* **Pertahankan paparan sinar matahari:** Sinar matahari sedang tampaknya cocok.  Jika tanaman Anda tampak layu atau pertumbuhannya lambat, pertimbangkan untuk memindahkannya ke tempat yang sedikit lebih cerah atau lebih teduh, tergantung pada kebutuhan spesies tanaman Anda.\\\\n* **Perhatikan suhu:** 25°C adalah suhu yang nyaman untuk banyak tanaman.  Namun, suhu yang terlalu tinggi atau rendah dapat mempengaruhi pertumbuhan.  Perhatikan perubahan suhu ekstrem dan sesuaikan lingkungan tanaman Anda jika perlu.\\\\n* **Pemupukan:**  Berikan pupuk seimbang sesuai dengan kebutuhan spesies tanaman Anda dan musim pertumbuhannya.  Terlalu banyak pupuk dapat membahayakan tanaman.\\\\n* **Periksa hama dan penyakit:** Meskipun catatan menyebutkan tanaman terlihat sehat, periksa secara berkala adanya hama atau tanda-tanda penyakit seperti perubahan warna daun, bintik-bintik, atau hama.  Bersihkan tanaman Anda secara teratur untuk mencegah masalah.\\\\n* **Potting:** Pastikan pot memiliki drainase yang baik untuk mencegah pembusukan akar.  Jika perlu, pindahkan tanaman ke pot yang lebih besar saat akarnya sudah memenuhi pot yang ada.\\\\n\\\\n**Informasi Tambahan yang Dibutuhkan:**\\\\n\\\\nUntuk memberikan rekomendasi yang lebih spesifik, saya memerlukan informasi tambahan seperti:\\\\n\\\\n* **Jenis tanaman:**  Ini sangat penting karena kebutuhan setiap tanaman berbeda.\\\\n* **Frekuensi penyiraman saat ini:**  Ini membantu menilai apakah jadwal penyiraman Anda sudah tepat.\\\\n* **Jenis tanah:**  Jenis tanah yang digunakan dapat mempengaruhi drainase dan nutrisi tanaman.\\\\n\\\\n\\\\nDengan informasi tambahan ini, saya dapat memberikan rekomendasi perawatan yang lebih akurat dan efektif.\\\\n\\\"\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
